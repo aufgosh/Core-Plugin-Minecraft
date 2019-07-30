@@ -1,0 +1,37 @@
+name: Core
+version: 1.0
+main: de.cedric.test.main.Main
+
+commands:
+   heal:
+      description: Heilt einen Spieler voll und stillt seinen Hunger!
+   trash:
+      description: Trashbin!
+   setspawn:
+      description: Setzt den Spwanpunkt!
+   cc:
+      desciption: Leert den Chat!
+   tpa:
+      description: Stellt eine Teleportanfrage an einen Spieler!
+   tpaccept:
+      description: Nimmt eine Teleportanfrage an.
+   gm:
+      description: versetzt den Gamemode eines Spielers!
+      aliases: [gm]
+   mute:
+      description: Mutet einen Spieler!
+   spawn:
+   home:
+   sethome:
+   enderchest:
+      aliases: bank
+   passive:
+   ping:
+   belohnung:
+   key:
+   settut:
+   tutorial:
+      aliases: tut
+   freischalten:
+   aosdohjkouppiahopdsbnFREElasdouasd:
+   key1:
