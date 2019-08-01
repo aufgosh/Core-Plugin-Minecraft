@@ -27,6 +27,7 @@ import de.cedric.test.commands.PerkCommand;
 import de.cedric.test.commands.PingCommand;
 import de.cedric.test.commands.SetHomeCommand;
 import de.cedric.test.commands.SetSpawnCommand;
+import de.cedric.test.commands.SpawnerCommand;
 import de.cedric.test.commands.Testobject;
 import de.cedric.test.commands.TpaCommand;
 import de.cedric.test.commands.Tpaccept;
@@ -73,7 +74,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		plugin = this;
 		//new Recipes().registerRecipes();
-		
+		getCommand("mobspawner").setExecutor(new SpawnerCommand());
 		getCommand("key1").setExecutor(new Key());
 		getCommand("aosdohjkouppiahopdsbnFREElasdouasd").setExecutor(new FreischaltenConsole());
 		getCommand("freischalten").setExecutor(new Freischalten());

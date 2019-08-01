@@ -30,7 +30,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-
+import org.bukkit.help.HelpTopic;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -70,11 +70,11 @@ public class JoinListener implements Listener {
 		
 		String msg = e.getMessage();
 		
-		if(msg.equalsIgnoreCase("/pl") || msg.equals("/plugins") || msg.equalsIgnoreCase("/bukkit:pl") || msg.equalsIgnoreCase("/bukkit:plugins")) {
+		//if(msg.equalsIgnoreCase("/pl") || msg.equals("/plugins") || msg.equalsIgnoreCase("/bukkit:pl") || msg.equalsIgnoreCase("/bukkit:plugins")) {
 		
-			p.sendMessage(Main.error);	
-			e.setCancelled(true);
-		}
+			//p.sendMessage(Main.error);	
+		//	e.setCancelled(true);
+	//	}
 		
 		if(msg.equalsIgnoreCase("/ver") || msg.equalsIgnoreCase("/version") || msg.equalsIgnoreCase("/bukkit:ver") || msg.equalsIgnoreCase("/bukkit:version")) {
 			p.sendMessage(Main.error);	
@@ -217,6 +217,20 @@ public class JoinListener implements Listener {
 	        }
 
 			
+		}
+	
+	@EventHandler
+	public void onUnknown(PlayerCommandPreprocessEvent e) {
+		if(!(e.isCancelled())) {
+		Player p = e.getPlayer();
+		String msg = e.getMessage().split(" ") [0];
+		HelpTopic topic = Bukkit.getServer().getHelpMap().getHelpTopic(msg);
+		if(topic == null) {
+			p.sendMessage(Main.prefix + "§cDieser Command existiert nicht!");
+			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
+			e.setCancelled(true);
+		}
+		}
 		}
 		
 	

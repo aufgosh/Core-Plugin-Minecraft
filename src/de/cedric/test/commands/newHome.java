@@ -45,7 +45,7 @@ public class newHome {
 				if(count != 0) {
 				
 				p.sendMessage(Main.prefix +"§aDu wirst in§c " + count + " §asekunden teleportiert!");
-				p.playSound(p.getLocation(), Sound.BLOCK_WOOD_PRESSUREPLATE_CLICK_ON, 3, 2);
+				p.playSound(p.getLocation(), Sound.BLOCK_WOODEN_TRAPDOOR_OPEN, 3, 2);
 				}
 				if(count == 0) {
 					

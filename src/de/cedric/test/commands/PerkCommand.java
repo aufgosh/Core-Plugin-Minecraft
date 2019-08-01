@@ -162,8 +162,8 @@ public class PerkCommand implements CommandExecutor {
 		berserkerLore.add("§aUm so weniger Leben du hast,");
 		berserkerLore.add("§aUm so wütender wirst du, wo durch");
 		berserkerLore.add("§adu mehr Schaden austeilst!");
-		berserkerLore.add("§7Du kannst immer nur eine Fähigkeit");
 		berserkerLore.add("");
+		berserkerLore.add("§7Du kannst immer nur eine Fähigkeit");
 		berserkerLore.add("§7aktiviert haben!");
 		berserkerMeta.setDisplayName("§6Berserker");
 		berserkerMeta.setLore(berserkerLore);
