@@ -16,6 +16,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,6 +25,7 @@ import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
@@ -48,6 +50,7 @@ import de.cedric.test.commands.Spawn;
 import de.cedric.test.commands.TpaAcceptCommand;
 import de.cedric.test.commands.TutorialSpawn;
 import de.cedric.test.commands.Tutorialexec;
+import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.newHome;
 import de.cedric.test.main.Main;
 import utilities.checkForBan;
@@ -246,6 +249,27 @@ public class JoinListener implements Listener {
 		}
 		}
 		
+	
+	@EventHandler
+	public void onEDeath(EntityDeathEvent e) {
+		if (e.getEntity().getKiller() != null) {
+		 Player p = e.getEntity().getKiller();
+		 
+		 if(e.getEntity().toString() == "CraftEnderDragon") {
+			 eventCommand.enderDragonKillBroadcast(p);
+		 }
+		 
+		 if(e.getEntity().toString() == "CraftWither") {
+			 eventCommand.witherKillBroadcast(p);
+		 }
+		 if(e.getEntity().toString() == "CraftWarden") {
+			 eventCommand.wardenKillBroadcast(p);
+		 }
+		 
+		 
+		 p.sendMessage("§aMob§7:§e " + e.getEntity());
+		}
+		}
 	
 	
 	@EventHandler
