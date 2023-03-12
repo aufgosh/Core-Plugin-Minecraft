@@ -35,6 +35,7 @@ import de.cedric.test.commands.TrashCommand;
 import de.cedric.test.commands.Tutorial;
 import de.cedric.test.commands.Tutorialtp;
 import de.cedric.test.commands.ccCommand;
+import de.cedric.test.commands.messageCommand;
 import de.cedric.test.commands.newSpawnCommand;
 import listener.JoinListener;
 import listener.Stealth;
@@ -100,6 +101,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("home").setExecutor(new HomeCommand());
 		getCommand("sethome").setExecutor(new SetHomeCommand());
 		getCommand("passive").setExecutor(new PerkCommand());
+		getCommand("message").setExecutor(new messageCommand());
 		
 		
 		

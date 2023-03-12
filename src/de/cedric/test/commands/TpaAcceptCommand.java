@@ -43,7 +43,7 @@ import de.cedric.test.main.Main;
            
             public void run() {
                if(count != 0) {
-                p2.sendMessage(Main.prefix +"�aDu wirst in�c " + count + " �asekunden teleportiert!");
+                p2.sendMessage(Main.prefix +"§aDu wirst in§c " + count + " §asekunden teleportiert!");
         		p2.playSound(p.getLocation(), Sound.BLOCK_WOODEN_TRAPDOOR_OPEN, 3, 2);
             }
                 if(count == 0) {
@@ -51,7 +51,7 @@ import de.cedric.test.main.Main;
    
                    
                     p2.teleport(p.getLocation());
-                    p.sendMessage(Main.prefix +"�aTeleport war erfolgreich!");
+                    p.sendMessage(Main.prefix +"§aTeleport war erfolgreich!");
 					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMAN_TELEPORT, 3, 2);
                    
                     countdownx6.get(p2).cancel();
@@ -75,7 +75,7 @@ import de.cedric.test.main.Main;
         }
        
         countdownx6.get(this.p).cancel();
-		p.sendMessage(Main.prefix +"�cTeleportvorgang abgebrochen!");
+		p.sendMessage(Main.prefix +"§cTeleportvorgang abgebrochen!");
 		p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
         countdownx6.remove(this.p);
     }

@@ -23,7 +23,7 @@ public class HealCommand implements CommandExecutor {
 			
 		p.setHealth(p.getHealthScale());
 		p.setFoodLevel(20);
-		p.sendMessage("§aDu wurdest erfolgreich geheilt!");
+		p.sendMessage("Â§aDu wurdest erfolgreich geheilt!");
 			} else
 				p.sendMessage(Main.error);
 		
@@ -35,13 +35,13 @@ public class HealCommand implements CommandExecutor {
 			
 			target.setHealth(target.getHealthScale());
 			target.setFoodLevel(20);
-			target.sendMessage("§aDu wurdest von §c" + p.getName() + "§a voll geheilt!");
-			p.sendMessage("§aDu hast §c" + target.getName() +  "§a erfolgreich geheilt!");
+			target.sendMessage("Â§aDu wurdest von ï¿½c" + p.getName() + "Â§a voll geheilt!");
+			p.sendMessage("Â§aDu hast ï¿½c" + target.getName() +  "Â§a erfolgreich geheilt!");
 			} else
 				p.sendMessage(Main.error);
 			
 		} else {
-			p.sendMessage("§cDer angegebene Spieler ist nicht online!");
+			p.sendMessage("Â§cDer angegebene Spieler ist nicht online!");
 		}
 		
 	} else {

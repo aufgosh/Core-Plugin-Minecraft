@@ -15,9 +15,9 @@ public class TrashCommand implements CommandExecutor {
 			Player p = (Player) sender;
 			if(args.length == 0) {
 				
-				Inventory inv = Bukkit.createInventory(null, 9 * 3, "§cDer Mülleimer");
+				Inventory inv = Bukkit.createInventory(null, 9 * 3, "Â§cDer MÃ¼lleimer");
 				p.openInventory(inv);
-				p.sendMessage("§aDu hast den Mülleimer erfolgreich geöffnet!");
+				p.sendMessage("Â§aDu hast den MÃ¼lleimer erfolgreich geÃ¶ffnet!");
 				
 			}
 		}

@@ -23,17 +23,17 @@ public class TpaCommand implements CommandExecutor {
 			Player p2 = Bukkit.getPlayer(args[0]);
 			Main.tpa.put(p2, p);
 			
-			p2.sendMessage(Main.prefix +"§aDer Spieler§e " + p.getName() + "§a möchte sich zu dir Teleportieren§7. §aDu hast 60 Sekunden§7,§a um die Anfrage mit §e/tpaccept§a anzunehmen!");
+			p2.sendMessage(Main.prefix +"Â§aDer SpielerÂ§e " + p.getName() + "Â§a mÃ¶chte sich zu dir TeleportierenÂ§7. Â§aDu hast 60 SekundenÂ§7,Â§a um die Anfrage mit Â§e/tpacceptÂ§a anzunehmen!");
 			
-			p.sendMessage(Main.prefix + "§aDu hast dem Spieler §e" + p2.getName() + "§a eine Teleportanfrage gesendet! Diese hält 60 Sekunden.");
+			p.sendMessage(Main.prefix + "Â§aDu hast dem Spieler Â§e" + p2.getName() + "Â§a eine Teleportanfrage gesendet! Diese hÃ¤lt 60 Sekunden.");
 			
 	        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
 	            public void run() {
 	            	if(Main.tpa.containsKey(p2)) {
 	            		if(Main.tpa.containsKey(p)) {
 
-	                p2.sendMessage(Main.prefix + "§cDie Teleportanfrage von§e "+ p.getName() +"§c ist abgelaufen!");
-	                p.sendMessage(Main.prefix + "§cDeine Teleportanfrage ist abgelaufen!");
+	                p2.sendMessage(Main.prefix + "Â§cDie Teleportanfrage vonÂ§e "+ p.getName() +"Â§c ist abgelaufen!");
+	                p.sendMessage(Main.prefix + "Â§cDeine Teleportanfrage ist abgelaufen!");
 	            	Main.tpa.remove(p2, p);
 	            		}
 	            	}
@@ -46,14 +46,14 @@ public class TpaCommand implements CommandExecutor {
 			
 			}
 			catch(Exception ex) {
-				p.sendMessage("§cDer Spieler§7 " + args[0] + "§c ist nicht online!");
+				p.sendMessage("Â§cDer SpielerÂ§7 " + args[0] + "Â§c ist nicht online!");
 			}
 			
 		} else {
-			p.sendMessage("§cBitte benutze /tpa (SPIELERNAME)");
+			p.sendMessage("Â§cBitte benutze /tpa (SPIELERNAME)");
 		}
 	    } else {
-			p.sendMessage(Main.prefix + "§cDu musst erst das Tutorial machen!");
+			p.sendMessage(Main.prefix + "Â§cDu musst erst das Tutorial machen!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		 }
 		

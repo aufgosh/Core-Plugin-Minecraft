@@ -18,10 +18,10 @@ public class utilitiesFunctions {
 		p.sendMessage(" ");
 		p.sendMessage("§8=============================");
 		p.sendMessage("");
-		p.sendMessage(Main.prefix +"§a/spawn, /sethome, /home");
-		p.sendMessage(Main.prefix +"§a/tpa, /tpaccept (player), /ping");
-		p.sendMessage(Main.prefix +"§a/tutorial, /shop, /vote");
-		p.sendMessage(Main.prefix +"§a/passive");
+		p.sendMessage(Main.prefix +"§a/spawn§7, §a/sethome§7, §a/home§7,");
+		p.sendMessage(Main.prefix +"§a/tpa§7, §a/tpaccept (player)§7, §a/ping§7,");
+		p.sendMessage(Main.prefix +"§a/tutorial§7, §a/shop§7, §a/vote§7,");
+		p.sendMessage(Main.prefix +"§a/passive§7, §a/msg");
 		p.sendMessage("");
 		p.sendMessage("§8=============================");
 		p.sendMessage(" ");

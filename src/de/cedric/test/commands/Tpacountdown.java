@@ -43,8 +43,8 @@ public class Tpacountdown {
                    
    
                    
-                    p2.sendMessage(Main.prefix + "§cDie Teleportanfrage ist abgelaufen!");
-                    p.sendMessage(Main.prefix + "§cDie Teleportanfrage ist abgelaufen!");
+                    p2.sendMessage(Main.prefix + "Â§cDie Teleportanfrage ist abgelaufen!");
+                    p.sendMessage(Main.prefix + "Â§cDie Teleportanfrage ist abgelaufen!");
                     
                     
 
