@@ -24,7 +24,7 @@ public class Tutorialtp implements CommandExecutor {
 		Player p = (Player) sender;
 		if(sender instanceof Player) {
 			if(args.length == 0) {
-				p.sendMessage(Main.prefix+"§cTeleportvorgang gestartet, bewege dich nicht!");
+				p.sendMessage(Main.prefix+"Â§cTeleportvorgang gestartet, bewege dich nicht!");
 				new Tutorialexec(p).start();
 		
 		

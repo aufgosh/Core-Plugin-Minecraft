@@ -53,6 +53,7 @@ public class PerkCommand implements CommandExecutor {
 		Player p = (Player) sender;
 		long jetzt = System.currentTimeMillis();
 		
+		
 		if(cooldown.containsKey(p.getName())) {
 			long be = cooldown.get(p.getName());
 			int rest = (int) ((be + (30*1000*60)) - jetzt);
@@ -63,8 +64,8 @@ public class PerkCommand implements CommandExecutor {
 				int sekunde = rest/1000;
 				
 				p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
-				p.sendMessage(Main.prefix +"§cDu musst noch§6 " +minute+(minute == 1 ? " Minute " : " Minuten ") + "§cund§6 "
-				+sekunde+(sekunde == 1 ? " Sekunde " : " Sekunden " + "§cwarten, um deine passive Spezialfähigkeit zu ändern!"));
+				p.sendMessage(Main.prefix +"Â§cDu musst nochÂ§6 " +minute+(minute == 1 ? " Minute " : " Minuten ") + "Â§cundÂ§6 "
+				+sekunde+(sekunde == 1 ? " Sekunde " : " Sekunden " + "Â§cwarten, um deine passive SpezialfÃ¤higkeit zu Ã¤ndern!"));
 				return true;
 			}
 			
@@ -73,114 +74,114 @@ public class PerkCommand implements CommandExecutor {
 
 
 		
-		Inventory inv = Bukkit.createInventory(null, 9, "§cPassive Spezialfähigkeiten");
+		Inventory inv = Bukkit.createInventory(null, 9, "Â§cPassive SpezialfÃ¤higkeiten");
 		
 		
 		
 		
-		ItemStack Glass = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);;
+		ItemStack Glass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);;
 		ItemMeta GlassMeta = Glass.getItemMeta();
 		Glass.setAmount(1);
 	    GlassMeta.setDisplayName(" ");
 		Glass.setItemMeta(GlassMeta);
 		
 
-		ItemStack Hunger = new ItemStack(Material.RED_ROSE);
+		ItemStack Hunger = new ItemStack(Material.LEGACY_RED_ROSE);
 		ItemMeta HungerMeta = Hunger.getItemMeta();
-		HungerMeta.setDisplayName("§6Photosynthesist");
+		HungerMeta.setDisplayName("Â§6Photosynthesist");
 		ArrayList<String> HungerLore = new ArrayList<String>();
-		HungerLore.add("§aDu bekommst eins mit der Natur! ");
-		HungerLore.add ("§aDein Körper nimmt nun genügend");
-		HungerLore.add("§aMineralien durch das bloße herumlaufen auf,");
-		HungerLore.add("§awo durch du nichts mehr essen musst!");
+		HungerLore.add("Â§aDu bekommst eins mit der Natur! ");
+		HungerLore.add ("Â§aDein KÃ¶rper nimmt nun genÂ§gend");
+		HungerLore.add("Â§aMineralien durch das bloÃŸe herumlaufen auf,");
+		HungerLore.add("Â§awo durch du nichts mehr essen musst!");
 		HungerLore.add("");
-		HungerLore.add("§7Du kannst immer nur eine Fähigkeit");
-		HungerLore.add("§7aktiviert haben!");
+		HungerLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		HungerLore.add("Â§7aktiviert haben!");
 		HungerMeta.setLore(HungerLore);
 		Hunger.setDurability((short) 1);
 		Hunger.setItemMeta(HungerMeta);
 		
 		
-		ItemStack xp = new ItemStack(Material.EXP_BOTTLE);
+		ItemStack xp = new ItemStack(Material.EXPERIENCE_BOTTLE);
 		ItemMeta xpMeta = xp.getItemMeta();
-		xpMeta.setDisplayName("§6Lernwillig");
+		xpMeta.setDisplayName("Â§6Lernwillig");
 		ArrayList<String> xpLore = new ArrayList<String>();
-		xpLore.add("§aDu wirst sehr Lernwillig,");
-		xpLore.add("§awo durch du doppelte Erfahrung");
-		xpLore.add("§aaus allen Quellen erhälst!");
+		xpLore.add("Â§aDu wirst sehr Lernwillig,");
+		xpLore.add("Â§awo durch du doppelte Erfahrung");
+		xpLore.add("Â§aaus allen Quellen erhÃ¤lst!");
 		xpLore.add("");
-		xpLore.add("§7Du kannst immer nur eine Fähigkeit");
-		xpLore.add("§7aktiviert haben!");
+		xpLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		xpLore.add("Â§7aktiviert haben!");
 		xpMeta.setLore(xpLore);
 		xp.setItemMeta(xpMeta);
 		
 		ItemStack ninja = new ItemStack(Material.MAGMA_CREAM);
 		ItemMeta ninjaMeta = ninja.getItemMeta();
-		ninjaMeta.setDisplayName("§6Chamäleon");
+		ninjaMeta.setDisplayName("Â§6ChamÃ¤leon");
 		ArrayList<String> ninjaLore = new ArrayList<String>();
-		ninjaLore.add("§aDu lernst dich der Natur perfekt");
-		ninjaLore.add("§aanzupassen, wodurch du nahe zu");
-		ninjaLore.add("§aunsichtbar wirst, wenn du schleichst!");
+		ninjaLore.add("Â§aDu lernst dich der Natur perfekt");
+		ninjaLore.add("Â§aanzupassen, wodurch du nahe zu");
+		ninjaLore.add("Â§aunsichtbar wirst, wenn du schleichst!");
 		ninjaLore.add("");
-		ninjaLore.add("§7Du kannst immer nur eine Fähigkeit");
-		ninjaLore.add("§7aktiviert haben!");
+		ninjaLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		ninjaLore.add("Â§7aktiviert haben!");
 		ninjaMeta.setLore(ninjaLore);
 		ninja.setItemMeta(ninjaMeta);
 		
 		ItemStack Tank = new ItemStack(Material.SHIELD);
 		ItemMeta TankMeta = Tank.getItemMeta();
-		TankMeta.setDisplayName("§6Einstecker");
+		TankMeta.setDisplayName("Â§6Einstecker");
 		ArrayList<String> TankLore = new ArrayList<String>();
-		TankLore.add("§aDu hast gelernt, mit kleinen");
-		TankLore.add("§aVerletzungen um zu gehen,");
-		TankLore.add("§awo durch du weniger Schaden");
-		TankLore.add("§aerhälst, wenn du oft hinter einander");
-		TankLore.add("§ageschlagen wirst!");
+		TankLore.add("Â§aDu hast gelernt, mit kleinen");
+		TankLore.add("Â§aVerletzungen um zu gehen,");
+		TankLore.add("Â§awodurch du weniger Schaden");
+		TankLore.add("Â§aerhÃ¤lst, wenn du oft hinter einander");
+		TankLore.add("Â§ageschlagen wirst!");
 		TankLore.add("");
-		TankLore.add("§7Du kannst immer nur eine Fähigkeit");
-		TankLore.add("§7aktiviert haben!");
+		TankLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		TankLore.add("Â§7aktiviert haben!");
 		TankMeta.setLore(TankLore);
 		Tank.setItemMeta(TankMeta);
 		
-		ItemStack undead = new ItemStack(Material.SKULL_ITEM, 1, (short) 0);
+		ItemStack undead = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short) 0);
 		ItemMeta undeadmeta = undead.getItemMeta();
 		ArrayList<String> undeadLore = new ArrayList<String>();
-		undeadLore.add("§aNach dem du eigentlich Stribst, erwachst du als");
-		undeadLore.add("§amächtiger §6Untoter§a wieder!");
-		undeadLore.add("§aDu wirst mit der Zeit schwächer, bis");
-		undeadLore.add("§adu letztendlich nach einer Minute §cstirbst!");
+		undeadLore.add("Â§aNach dem du eigentlich Stribst, erwachst du als");
+		undeadLore.add("Â§amÃ¤chtiger Â§6UntoterÂ§a wieder!");
+		undeadLore.add("Â§aDu wirst mit der Zeit schwÃ¤cher, bis");
+		undeadLore.add("Â§adu letztendlich nach einer Minute Â§cstirbst!");
 	    undeadLore.add("");
-		undeadLore.add("§7Du kannst immer nur eine Fähigkeit");
-		undeadLore.add("§7aktiviert haben!");
-		undeadmeta.setDisplayName("§6Untoter");
+		undeadLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		undeadLore.add("Â§7aktiviert haben!");
+		undeadmeta.setDisplayName("Â§6Untoter");
 		undeadmeta.setLore(undeadLore);
 		undead.setItemMeta(undeadmeta);
 		
-		ItemStack berserker = new ItemStack(Material.INK_SACK, 1, (short) 1);
+		ItemStack berserker = new ItemStack(Material.INK_SAC, 1, (short) 1);
 		ItemMeta berserkerMeta = berserker.getItemMeta();
 		ArrayList<String> berserkerLore = new ArrayList<String>();
-		berserkerLore.add("§aUm so weniger Leben du hast,");
-		berserkerLore.add("§aUm so wütender wirst du, wo durch");
-		berserkerLore.add("§adu mehr Schaden austeilst!");
+		berserkerLore.add("Â§aUm so weniger Leben du hast,");
+		berserkerLore.add("Â§aUm so wÂ§tender wirst du, wo durch");
+		berserkerLore.add("Â§adu mehr Schaden austeilst!");
 		berserkerLore.add("");
-		berserkerLore.add("§7Du kannst immer nur eine Fähigkeit");
-		berserkerLore.add("§7aktiviert haben!");
-		berserkerMeta.setDisplayName("§6Berserker");
+		berserkerLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		berserkerLore.add("Â§7aktiviert haben!");
+		berserkerMeta.setDisplayName("Â§6Berserker");
 		berserkerMeta.setLore(berserkerLore);
 		berserker.setItemMeta(berserkerMeta);
 		
-		ItemStack assasin = new ItemStack(Material.MAGMA);
+		ItemStack assasin = new ItemStack(Material.MAGMA_BLOCK);
 		ItemMeta assasinMeta = assasin.getItemMeta();
 		ArrayList<String> assasinLore = new ArrayList<String>();
-		assasinLore.add("§aDu wirst zum §6Höllenmeister§a, wodurch");
-		assasinLore.add("§aDu permanent keinen Fallschaden sowie");
-		assasinLore.add("§akeinen Schaden durch lava oder Feuer");
-		assasinLore.add("§aerhalten wirst!");
+		assasinLore.add("Â§aDu wirst zum Â§6HÃ¶llenmeisterÂ§a, wodurch");
+		assasinLore.add("Â§aDu permanent keinen Fallschaden sowie");
+		assasinLore.add("Â§akeinen Schaden durch lava oder Feuer");
+		assasinLore.add("Â§aerhalten wirst!");
 		assasinLore.add("");
-		assasinLore.add("§7Du kannst immer nur eine Fähigkeit");
-		assasinLore.add("§7aktiviert haben!");
+		assasinLore.add("Â§7Du kannst immer nur eine FÃ¤higkeit");
+		assasinLore.add("Â§7aktiviert haben!");
 		assasinMeta.setLore(assasinLore);
-		assasinMeta.setDisplayName("§6Höllenmeister");
+		assasinMeta.setDisplayName("Â§6HÃ¶llenmeister");
 		assasin.setItemMeta(assasinMeta);
 		
 		
@@ -198,11 +199,11 @@ public class PerkCommand implements CommandExecutor {
 		inv.setItem(7, Glass);
 		inv.setItem(8, Glass);
 		if(p.hasPermission("main.user")) {
-		p.playSound(p.getLocation(), Sound.BLOCK_ENDERCHEST_OPEN, 3, 2);
+		p.playSound(p.getLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 3, 2);
 		p.openInventory(inv);
 		}
 		else {
-			p.sendMessage(Main.prefix + "§cDu musst erst das Tutorial machen!");
+			p.sendMessage(Main.prefix + "Â§cDu musst erst das Tutorial machen!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		 }
 		

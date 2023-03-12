@@ -44,7 +44,7 @@ public class newHome {
 			public void run() {
 				if(count != 0) {
 				
-				p.sendMessage(Main.prefix +"§aDu wirst in§c " + count + " §asekunden teleportiert!");
+				p.sendMessage(Main.prefix +"Â§aDu wirst inÂ§c " + count + " Â§asekunden teleportiert!");
 				p.playSound(p.getLocation(), Sound.BLOCK_WOODEN_TRAPDOOR_OPEN, 3, 2);
 				}
 				if(count == 0) {
@@ -58,8 +58,8 @@ public class newHome {
 					Location loc = new Location(Bukkit.getWorld(world), x, y, z);
 					
 					p.teleport(loc);
-					p.sendMessage(Main.prefix +"§aDu wurdest erfolgreich teleportiert!");
-					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMEN_TELEPORT, 3, 2);
+					p.sendMessage(Main.prefix +"Â§aDu wurdest erfolgreich teleportiert!");
+					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMAN_TELEPORT, 3, 2);
 					
 					countdown.get(p).cancel();
 					countdown.remove(p);
@@ -81,7 +81,7 @@ public class newHome {
 		}
 		
 		countdown.get(this.p).cancel();
-		p.sendMessage(Main.prefix +"§cTeleportvorgang abgebrochen!");
+		p.sendMessage(Main.prefix +"Â§cTeleportvorgang abgebrochen!");
 		p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		countdown.remove(this.p);
 	}

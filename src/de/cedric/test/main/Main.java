@@ -42,9 +42,9 @@ import listener.Stealth;
 public class Main extends JavaPlugin implements Listener {
 	
 	
-	public static String prefix = "§cServer§7 >> ";
-	public static String syntax = "§cFalscher Syntax!";
-	public static String error = "§cServer§7 >> §cDieser Command existiert nicht!";
+	public static String prefix = "Â§cServerÂ§7 >> ";
+	public static String syntax = "Â§cFalscher Syntax!";
+	public static String error = "Â§cServerÂ§7 >> Â§cDieser Command existiert nicht!";
 	private static Main plugin;
 	
 	
@@ -138,7 +138,7 @@ public class Main extends JavaPlugin implements Listener {
 			
 			 @Override
 			 public void run() {
-				 ((org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer)p).getHandle().playerConnection.a(new net.minecraft.server.v1_12_R1.PacketPlayInClientCommand(net.minecraft.server.v1_12_R1.PacketPlayInClientCommand.EnumClientCommand.PERFORM_RESPAWN));
+				 p.spigot().respawn();
 			 }
 			
 			

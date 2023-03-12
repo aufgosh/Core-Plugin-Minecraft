@@ -38,10 +38,10 @@ public class Tutorial implements CommandExecutor {
 				cfg.set("tutorial.Pitch", loc.getPitch());
 				Main.getPlugin().saveConfig();
 				
-				p.sendMessage("§aTutorial wurde erfolgreich gesetzt!");
+				p.sendMessage("Â§aTutorial wurde erfolgreich gesetzt!");
 				
 			} else
-				p.sendMessage("§cBitte benutze /settut !");
+				p.sendMessage("Â§cBitte benutze /settut !");
 			
 		} else
 			p.sendMessage(Main.error);

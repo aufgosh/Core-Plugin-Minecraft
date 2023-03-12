@@ -21,14 +21,14 @@ public class newSpawnCommand implements CommandExecutor{
 		if(sender instanceof Player) {
 			if(p.hasPermission("main.user")) {
 			if(args.length == 0) {
-				p.sendMessage(Main.prefix+"§cTeleportvorgang gestartet, bewege dich nicht!");
+				p.sendMessage(Main.prefix+"Â§cTeleportvorgang gestartet, bewege dich nicht!");
 				new Spawn(p).start();
 		
 		
 	}}
 
 			else {
-				p.sendMessage(Main.prefix + "§cDu musst erst das Tutorial machen!");
+				p.sendMessage(Main.prefix + "Â§cDu musst erst das Tutorial machen!");
 				p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 			 }}
 		return true;}

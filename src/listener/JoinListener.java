@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -25,6 +26,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -48,6 +50,8 @@ import de.cedric.test.commands.TutorialSpawn;
 import de.cedric.test.commands.Tutorialexec;
 import de.cedric.test.commands.newHome;
 import de.cedric.test.main.Main;
+import utilities.checkForBan;
+import utilities.utilitiesFunctions;
 
 
 
@@ -80,15 +84,9 @@ public class JoinListener implements Listener {
 			p.sendMessage(Main.error);	
 			e.setCancelled(true);
 		}
-		if(msg.equalsIgnoreCase("/?") || msg.equalsIgnoreCase("/help") || msg.equalsIgnoreCase("/minecraft:help") || msg.equalsIgnoreCase("/bukkit:?") || msg.equalsIgnoreCase("/bukkit:help") ) {
+		if(msg.equalsIgnoreCase("/?") || msg.equalsIgnoreCase("/hilfe") || msg.equalsIgnoreCase("/help") || msg.equalsIgnoreCase("/minecraft:help") || msg.equalsIgnoreCase("/bukkit:?") || msg.equalsIgnoreCase("/bukkit:help") ) {
 			e.setCancelled(true);
-			p.sendMessage(" ");
-			p.sendMessage(" ");
-			p.sendMessage(" ");
-			p.sendMessage(Main.prefix +"§a/Spawn, /Tutorial, /setHome, /Home");
-			p.sendMessage(Main.prefix +"§a/tpa, /tpaccept (SPIELER)");
-			p.sendMessage(Main.prefix +"§a/passive, /Friede, /vote");
-			p.sendMessage(Main.prefix +"§a/ping, /belohnung, /trash");
+			utilitiesFunctions.sendHelpMessage(p);
 		}
 		}
 
@@ -96,36 +94,51 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent e) {
 		
+		Player p = e.getPlayer();
+		
+		checkForBan.banCheck(p);
+		
+		e.setJoinMessage("Â§8[Â§a+Â§8] " + p.getName());
+
+		utilitiesFunctions.clearPlayerChat(p);
+		utilitiesFunctions.sendHelpMessage(p);
+		p.sendTitle("Â§aWelcome!", "", 15,15,15);
+	
+
+		if(!p.hasPlayedBefore()) {
+			new TutorialSpawn(p).start();
+		    ItemStack food = new ItemStack(Material.BREAD);
+			ItemMeta testMeta = food.getItemMeta();
+			food.setAmount(16);
+			
+			ItemStack shovel = new ItemStack(Material.GOLDEN_SHOVEL);
+			ItemMeta shovelmeta = shovel.getItemMeta();
+			
+			food.setItemMeta(testMeta);
+			p.getPlayer().getInventory().addItem(food, shovel);
+		}
+	}
+	
+	
+	
+	@EventHandler
+	public void onPlayerTab(PlayerCommandSendEvent e) {
+		List<String> blockedCommands = new ArrayList<>();
 		
 		Player p = e.getPlayer();
 		
-		for(int i = 0; i < 200; i++) {
-			p.sendMessage(" ");
-		}
+		if((!p.hasPermission("main.admin"))) {
 		
-		
-		e.setJoinMessage("");
-
-		p.sendMessage("§7i----------------------i");
-		p.sendMessage("§7                                 §7");
-		p.sendMessage("§7 §a Willkommen§7,§e " +p.getName());
-		p.sendMessage("§7                                 §7");
-		p.sendMessage("§7!----------------------!");
-		
-		//e.setJoinMessage("§7[§a+§7] " +p.getName());
-		
-		
-		
-		
-		
-		if(!p.hasPlayedBefore()) {
-			for(int i = 0; i < 200; i++) {
-				p.sendMessage(" ");
-			}
-			
-			new TutorialSpawn(p).start();			
-		}
-		
+		blockedCommands.add("gamemode");
+		blockedCommands.add("pl");
+		blockedCommands.add("plugins");
+		blockedCommands.add("boots");
+		blockedCommands.add("belohnung");
+		blockedCommands.add("freischalten");
+		blockedCommands.add("aasdooqppaspdyymncxasdjaslde");
+		blockedCommands.add("aosdohjkouppiahopdsbnfreelasdouasd");
+		e.getCommands().removeAll(blockedCommands);
+	}
 	}
 	
 	@EventHandler
@@ -191,7 +204,7 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void onPlayerQuit(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
-		e.setQuitMessage("");
+		e.setQuitMessage("Â§8[Â§c-Â§8] " + p.getName());
 		new newHome(p).stop();
 		new Spawn(p).stop();
 		new TpaAcceptCommand(p).stop();
@@ -226,7 +239,7 @@ public class JoinListener implements Listener {
 		String msg = e.getMessage().split(" ") [0];
 		HelpTopic topic = Bukkit.getServer().getHelpMap().getHelpTopic(msg);
 		if(topic == null) {
-			p.sendMessage(Main.prefix + "§cDieser Command existiert nicht!");
+			p.sendMessage(Main.prefix + "Â§cDieser Command existiert nicht!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 			e.setCancelled(true);
 		}
@@ -304,7 +317,7 @@ public class JoinListener implements Listener {
 		ItemStack item = e.getCurrentItem();
 		Player p = (Player) e.getWhoClicked();
 		
-		if(e.getView().getTitle().contains("§cBelohnungen")) {
+		if(e.getView().getTitle().contains("Â§cBelohnungen")) {
 			e.setCancelled(true);
 			
 			if (open == null) {
@@ -315,16 +328,16 @@ public class JoinListener implements Listener {
 				return;
 			}
 			
-                if(item.getItemMeta().getDisplayName().equals("§dGewöhnliche Kiste")) {
+                if(item.getItemMeta().getDisplayName().equals("Â§dGewÃ¶hnliche Kiste")) {
 				
 				
 			    ItemStack test = new ItemStack(Material.TRIPWIRE_HOOK);
 			    ArrayList<String> testLore = new ArrayList<String>();
 				ItemMeta testMeta = test.getItemMeta();
-				testMeta.setDisplayName("§dGewöhnlicher Schlüssel");
-				testLore.add("§6Ein Schlüssel womit du eine");
-				testLore.add("§6gewöhnliche Belohnungskiste öffnen kannst!");
-				testLore.add("§6Gebe dazu §c/Belohnung§6 ein.");
+				testMeta.setDisplayName("Â§dGewÃ¶hnlicher SchlÃ¼ssel");
+				testLore.add("Â§6Ein SchlÃ¼ssel womit du eine");
+				testLore.add("Â§6gewÂ§hnliche Belohnungskiste Â§ffnen kannst!");
+				testLore.add("Â§6Gebe dazu Â§c/BelohnungÂ§6 ein.");
 				testMeta.setLore(testLore);
 				test.setAmount(1);
 				
@@ -340,7 +353,7 @@ public class JoinListener implements Listener {
 				Iron.setAmount(10);
 				Iron.setItemMeta(IronMeta);
 				
-				ItemStack xp = new ItemStack(Material.EXP_BOTTLE);
+				ItemStack xp = new ItemStack(Material.EXPERIENCE_BOTTLE);
 				ItemMeta xpMeta = xp.getItemMeta();
 				xp.setAmount(16);
 				xp.setItemMeta(xpMeta);
@@ -356,21 +369,21 @@ public class JoinListener implements Listener {
 				p.getInventory().addItem(xp);
 				p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 			      }else {
-				     p.sendMessage(Main.prefix + "§cDu hast keinen passenden Schlüssel!");
+				     p.sendMessage(Main.prefix + "Â§cDu hast keinen passenden SchlÃ¼ssel!");
 				     p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 			         }
 			         }
                 
-                if(item.getItemMeta().getDisplayName().equals("§dSeltene Kiste")) {
+                if(item.getItemMeta().getDisplayName().equals("Â§dSeltene Kiste")) {
     				
     				
     			    ItemStack test = new ItemStack(Material.TRIPWIRE_HOOK);
     			    ArrayList<String> testLore = new ArrayList<String>();
     				ItemMeta testMeta = test.getItemMeta();
-    				testMeta.setDisplayName("§dSeltener Schlüssel");
-    				testLore.add("§6Ein Schlüssel womit du eine");
-    				testLore.add("§6seltene Belohnungskiste öffnen kannst!");
-    				testLore.add("§6Gebe dazu §c/Belohnung§6 ein.");
+    				testMeta.setDisplayName("Â§dSeltener SchlÃ¼ssel");
+    				testLore.add("Â§6Ein SchlÃ¼ssel womit du eine");
+    				testLore.add("Â§6seltene Belohnungskiste Ã¶ffnen kannst!");
+    				testLore.add("Â§6Gebe dazu Â§c/BelohnungÂ§6 ein.");
     				testMeta.setLore(testLore);
     				test.setAmount(1);
     				
@@ -386,7 +399,7 @@ public class JoinListener implements Listener {
     				Iron.setAmount(32);
     				Iron.setItemMeta(IronMeta);
     				
-    				ItemStack xp = new ItemStack(Material.EXP_BOTTLE);
+    				ItemStack xp = new ItemStack(Material.EXPERIENCE_BOTTLE);
     				ItemMeta xpMeta = xp.getItemMeta();
     				xp.setAmount(40);
     				xp.setItemMeta(xpMeta);
@@ -402,21 +415,21 @@ public class JoinListener implements Listener {
     				p.getInventory().addItem(xp);
     				p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
     			}else {
-    				p.sendMessage(Main.prefix + "§cDu hast keinen passenden Schlüssel!");
+    				p.sendMessage(Main.prefix + "Â§cDu hast keinen passenden SchlÃ¼ssel!");
     				p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
     			}
     			}
                 
-                if(item.getItemMeta().getDisplayName().equals("§dEpische Kiste")) {
+                if(item.getItemMeta().getDisplayName().equals("Â§dEpische Kiste")) {
     				
     				
     			    ItemStack test = new ItemStack(Material.TRIPWIRE_HOOK);
     			    ArrayList<String> testLore = new ArrayList<String>();
     				ItemMeta testMeta = test.getItemMeta();
-    				testMeta.setDisplayName("§dEpischer Schlüssel");
-    				testLore.add("§6Ein Schlüssel womit du eine");
-    				testLore.add("§6epische Belohnungskiste öffnen kannst!");
-    				testLore.add("§6Gebe dazu §c/Belohnung§6 ein.");
+    				testMeta.setDisplayName("Â§dEpischer SchlÃ¼ssel");
+    				testLore.add("Â§6Ein SchlÃ¼ssel womit du eine");
+    				testLore.add("Â§6epische Belohnungskiste Ã¶ffnen kannst!");
+    				testLore.add("Â§6Gebe dazu Â§c/BelohnungÂ§6 ein.");
     				testMeta.setLore(testLore);
     				test.setAmount(1);
     				
@@ -432,7 +445,7 @@ public class JoinListener implements Listener {
     				Iron.setAmount(7);
     				Iron.setItemMeta(IronMeta);
     				
-    				ItemStack xp = new ItemStack(Material.EXP_BOTTLE);
+    				ItemStack xp = new ItemStack(Material.EXPERIENCE_BOTTLE);
     				ItemMeta xpMeta = xp.getItemMeta();
     				xp.setAmount(64);
     				xp.setItemMeta(xpMeta);
@@ -448,7 +461,7 @@ public class JoinListener implements Listener {
     				p.getInventory().addItem(xp);
     				p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
     			}else {
-    				p.sendMessage(Main.prefix + "§cDu hast keinen passenden Schlüssel!");
+    				p.sendMessage(Main.prefix + "Â§cDu hast keinen passenden SchlÃ¼ssel!");
     				p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
     			}
     			}
@@ -457,7 +470,7 @@ public class JoinListener implements Listener {
 
 		}
 		
-		if(e.getView().getTitle().contains("§cPassive Spezialfähigkeiten")) {
+		if(e.getView().getTitle().contains("Â§cPassive SpezialfÃ¤higkeiten")) {
 			e.setCancelled(true);
 		
 		if (open == null) {
@@ -472,7 +485,7 @@ public class JoinListener implements Listener {
 		long jetzt = System.currentTimeMillis();
 		
 			
-		  if(item.getItemMeta().getDisplayName().equals("§6Lernwillig")) {
+		  if(item.getItemMeta().getDisplayName().equals("Â§6Lernwillig")) {
 				PerkCommand.cfg.set(p.getName(), 1);
 				PerkCommand.cfg1.set(p.getName(), null);
 				PerkCommand.cfg2.set(p.getName(), null);
@@ -487,7 +500,7 @@ public class JoinListener implements Listener {
 				p.setAllowFlight(false);
 				p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 				p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-				p.sendMessage(Main.prefix + "§aDu hast die Fähigkeit §6Lernwillig§a erlernt!");
+				p.sendMessage(Main.prefix + "Â§aDu hast die FÃ¤higkeit Â§6LernwilligÂ§a erlernt!");
 				p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 				try {
 					PerkCommand.cfg.save(PerkCommand.file);
@@ -504,7 +517,7 @@ public class JoinListener implements Listener {
 				}
 			}
 			
-			if(item.getItemMeta().getDisplayName().equals("§6Photosynthesist")) {
+			if(item.getItemMeta().getDisplayName().equals("Â§6Photosynthesist")) {
 				PerkCommand.cfg1.set(p.getName(), 1); 
 				PerkCommand.cfg.set(p.getName(), null);
 				PerkCommand.cfg2.set(p.getName(), null);
@@ -520,7 +533,7 @@ public class JoinListener implements Listener {
 				p.setFoodLevel(20);
 				p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 				p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-				p.sendMessage(Main.prefix + "§aDu hast die Fähigkeit §6Photosynthesist§a erlernt!");
+				p.sendMessage(Main.prefix + "Â§aDu hast die FÃ¤higkeit Â§6PhotosynthesistÂ§a erlernt!");
 				p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 				try {
 					PerkCommand.cfg.save(PerkCommand.file);
@@ -537,7 +550,7 @@ public class JoinListener implements Listener {
 				}
 			}
 			
-			  if(item.getItemMeta().getDisplayName().equals("§6Chamäleon")) {
+			  if(item.getItemMeta().getDisplayName().equals("Â§6ChamÃ¤leon")) {
 					PerkCommand.cfg.set(p.getName(), null);
 					PerkCommand.cfg1.set(p.getName(), null);
 					PerkCommand.cfg2.set(p.getName(), 1);
@@ -552,7 +565,7 @@ public class JoinListener implements Listener {
 					p.setAllowFlight(false);
 					p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 					p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-					p.sendMessage(Main.prefix + "§aDu hast die Fähigkeit §6Chamäleon§a erlernt!");
+					p.sendMessage(Main.prefix + "Â§aDu hast die FÃ¤higkeit Â§6ChamÃ¤leonÂ§a erlernt!");
 					p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 					try {
 						PerkCommand.cfg.save(PerkCommand.file);
@@ -568,7 +581,7 @@ public class JoinListener implements Listener {
 					}
 				}
 			  
-			  if(item.getItemMeta().getDisplayName().equals("§6Einstecker")) {
+			  if(item.getItemMeta().getDisplayName().equals("Â§6Einstecker")) {
 					PerkCommand.cfg.set(p.getName(), null);
 					PerkCommand.cfg1.set(p.getName(), null);
 					PerkCommand.cfg2.set(p.getName(), null);
@@ -583,7 +596,7 @@ public class JoinListener implements Listener {
 					p.closeInventory();
 					p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 					p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-					p.sendMessage(Main.prefix + "§aDu hast die Fähigkeit §6Einstecker§a erlernt!");
+					p.sendMessage(Main.prefix + "Â§aDu hast die FÃ¤higkeit Â§6EinsteckerÂ§a erlernt!");
 					p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 					try {
 						PerkCommand.cfg.save(PerkCommand.file);
@@ -599,7 +612,7 @@ public class JoinListener implements Listener {
 					}
 				}
 			  
-			  if(item.getItemMeta().getDisplayName().equals("§6Untoter")) {
+			  if(item.getItemMeta().getDisplayName().equals("Â§6Untoter")) {
 					PerkCommand.cfg.set(p.getName(), null);
 					PerkCommand.cfg1.set(p.getName(), null);
 					PerkCommand.cfg2.set(p.getName(), null);
@@ -614,7 +627,7 @@ public class JoinListener implements Listener {
 					p.closeInventory();
 					p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 					p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-					p.sendMessage(Main.prefix + "§aDu hast die Fähigkeit §6Einstecker§a erlernt!");
+					p.sendMessage(Main.prefix + "Â§aDu hast die FÃ¤higkeit Â§6UntoterÂ§a erlernt!");
 					p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 					try {
 						PerkCommand.cfg.save(PerkCommand.file);
@@ -630,7 +643,7 @@ public class JoinListener implements Listener {
 					}
 			  }
 			  
-			  if(item.getItemMeta().getDisplayName().equals("§6Berserker")) {
+			  if(item.getItemMeta().getDisplayName().equals("Â§6Berserker")) {
 					PerkCommand.cfg.set(p.getName(), null);
 					PerkCommand.cfg1.set(p.getName(), null);
 					PerkCommand.cfg2.set(p.getName(), null);
@@ -644,7 +657,7 @@ public class JoinListener implements Listener {
 					p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 					p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 					p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 0));
-					p.sendMessage(Main.prefix +"§aDu hast die Fähigkeit §6Berserker§a erlernt!");
+					p.sendMessage(Main.prefix +"Â§aDu hast die FÃ¤higkeit Â§6BerserkerÂ§a erlernt!");
 					p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 					p.setMaxHealth(14);
 					p.setHealthScale(14);
@@ -662,7 +675,7 @@ public class JoinListener implements Listener {
 					}
 			  }
 			  
-			  if(item.getItemMeta().getDisplayName().equals("§6Höllenmeister")) {
+			  if(item.getItemMeta().getDisplayName().equals("Â§6HÃ¶llenmeister")) {
 					PerkCommand.cfg.set(p.getName(), null);
 					PerkCommand.cfg1.set(p.getName(), null);
 					PerkCommand.cfg2.set(p.getName(), null);
@@ -677,7 +690,7 @@ public class JoinListener implements Listener {
 					p.getPlayer().removePotionEffect(PotionEffectType.FIRE_RESISTANCE);
 					p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 4));
 					p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-					p.sendMessage(Main.prefix +"§aDu hast die Fähigkeit §6Höllenmeister§a erlernt!");
+					p.sendMessage(Main.prefix +"Â§aDu hast die FÃ¤higkeit Â§6HÃ¶llenmeisterÂ§a erlernt!");
 					p.playSound(p.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 					try {
 						PerkCommand.cfg.save(PerkCommand.file);
@@ -775,8 +788,8 @@ public class JoinListener implements Listener {
 						p.setHealthScale(20);
 						new ReSpawn(p).stop();
 	    				
-	    				p.sendMessage("§cDu kannst erst in§6 " +minute+(minute == 1 ? " Minute " : " Minuten ") + "§cund§6 "
-	    				+sekunde+(sekunde == 1 ? " Sekunde " : " Sekunden " + "§cwieder als §6Untoter§c erwachen!"));
+	    				p.sendMessage("Â§cDu kannst erst inÂ§6 " +minute+(minute == 1 ? " Minute " : " Minuten ") + "Â§cundÂ§6 "
+	    				+sekunde+(sekunde == 1 ? " Sekunde " : " Sekunden " + "Â§cwieder als Â§6UntoterÂ§c erwachen!"));
 	    			}
 	    			
 	    		} else {
@@ -788,7 +801,7 @@ public class JoinListener implements Listener {
 	        
 	        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(Main.getPlugin(), new Runnable() {
 	            public void run() {
-	            	p.sendMessage("§aDu bist als mächtiger§6 Untoter§a wieder gespawnt!");
+	            	p.sendMessage("Â§aDu bist als mÂ§chtigerÂ§6 UntoterÂ§a wieder gespawnt!");
 	    	        p.spigot().respawn();
 	                p.teleport(l);
 	                p.getWorld().strikeLightning(l);

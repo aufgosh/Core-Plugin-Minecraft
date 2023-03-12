@@ -38,7 +38,7 @@ public class FreischaltenConsole implements CommandExecutor {
 		Bukkit.dispatchCommand(console, "lp user " + p.getName() + " group set Spieler");
 		Bukkit.dispatchCommand(console, "key1 " + p.getName() + " epic");
 		p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
-		p.sendMessage(Main.prefix+"§aDu hast dich erfolgreich freigeschalten!");
+		p.sendMessage(Main.prefix+"Â§aDu hast dich erfolgreich freigeschalten!");
 		cfgfree.set(p.getName(), 1);
 		try {
 			cfgfree.save(free);
@@ -64,7 +64,7 @@ public class FreischaltenConsole implements CommandExecutor {
 		diamond.setAmount(3);
 		diamond.setItemMeta(diamondMeta);
 		
-		ItemStack steak = new ItemStack(Material.GRILLED_PORK);
+		ItemStack steak = new ItemStack(Material.COOKED_PORKCHOP);
 		ItemMeta steakMeta = steak.getItemMeta();
 		steak.setAmount(32);
 		steak.setItemMeta(steakMeta);
@@ -75,7 +75,7 @@ public class FreischaltenConsole implements CommandExecutor {
 		p.teleport(loc);
 		p.getInventory().addItem(steak);
 		} else {
-			p.sendMessage(Main.prefix + "§cDu hast dich bereits freigeschalten!");
+			p.sendMessage(Main.prefix + "Â§cDu hast dich bereits freigeschalten!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		}
 		return false;

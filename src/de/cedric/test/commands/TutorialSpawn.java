@@ -56,7 +56,7 @@ public class TutorialSpawn {
 					
 
 					p.teleport(loc);
-					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMEN_TELEPORT, 3, 2);
+					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMAN_TELEPORT, 3, 2);
 					
 					countdown.get(p).cancel();
 					countdown.remove(p);
@@ -79,7 +79,7 @@ public class TutorialSpawn {
 		}
 		
 		countdown.get(this.p).cancel();
-		p.sendMessage(Main.prefix +"§cTeleportvorgang abgebrochen!");
+		p.sendMessage(Main.prefix +"Â§cTeleportvorgang abgebrochen!");
 		p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		countdown.remove(this.p);
 	}

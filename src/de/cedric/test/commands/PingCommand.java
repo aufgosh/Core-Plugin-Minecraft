@@ -20,7 +20,7 @@ public class PingCommand implements CommandExecutor {
 
 		
 		if(args.length == 0) {
-			p.sendMessage(Main.prefix +"§aDein Ping:§e " + getPing(p) +"ms§7.");
+			p.sendMessage(Main.prefix +"ï¿½aDein Ping:ï¿½e " + getPing(p) +"msï¿½7.");
 			p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 		}
 			
@@ -29,9 +29,9 @@ public class PingCommand implements CommandExecutor {
 			Player target = Bukkit.getPlayer(args[0]);
 			if(target != null){
 			p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
-			p.sendMessage(Main.prefix +"§aDer Ping von §e"+ target.getDisplayName() +"§a:§e " + getPing(target) +"ms§7.");
+			p.sendMessage(Main.prefix +"ï¿½aDer Ping von ï¿½e"+ target.getDisplayName() +"ï¿½a:ï¿½e " + getPing(target) +"msï¿½7.");
 			}else{
-			p.sendMessage(Main.prefix +"§cDer Spieler §e"+ args[0] + "§c ist nicht online!!");
+			p.sendMessage(Main.prefix +"ï¿½cDer Spieler ï¿½e"+ args[0] + "ï¿½c ist nicht online!!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 			}
 			}
@@ -42,13 +42,11 @@ public class PingCommand implements CommandExecutor {
 	}
 	
 	public int getPing(Player p) {
-		org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer pingc = (org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer) p;
-		net.minecraft.server.v1_12_R1.EntityPlayer pinge = pingc.getHandle();
-		return pinge.ping;
+		return p.getPing();
 	}
 
 
 }
 
-//p.sendMessage("§aDein Ping:§e " + getPing(p) +"ms§7.");
+//p.sendMessage("ï¿½aDein Ping:ï¿½e " + getPing(p) +"msï¿½7.");
 

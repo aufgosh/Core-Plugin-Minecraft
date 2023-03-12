@@ -54,7 +54,7 @@ public class ReSpawn{
 	
 
 					p.setHealth(0);
-					p.sendMessage("§cDu bist an deinem Fluch erlegen!");
+					p.sendMessage("Â§cDu bist an deinem Fluch erlegen!");
 					p.playSound(p.getLocation(),Sound.ENTITY_ELDER_GUARDIAN_DEATH, 3, 2);
 					countdownx1.get(p).cancel();
 					countdownx1.remove(p);

@@ -30,10 +30,10 @@ public class SetSpawnCommand implements CommandExecutor {
 					cfg.set("Spawn.Pitch", loc.getPitch());
 					Main.getPlugin().saveConfig();
 					
-					p.sendMessage("§aSpawn wurde erfolgreich gesetzt!");
+					p.sendMessage("Â§aSpawn wurde erfolgreich gesetzt!");
 					
 				} else
-					p.sendMessage("§cBitte benutze /setspawn !");
+					p.sendMessage("Â§cBitte benutze /setspawn !");
 				
 			} else
 				p.sendMessage(Main.error);

@@ -21,11 +21,11 @@ public class Belohnungen implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
 		Player p = (Player) sender;
-		Inventory inv = Bukkit.createInventory(null, 27, "§cBelohnungen");
+		Inventory inv = Bukkit.createInventory(null, 27, "Â§cBelohnungen");
 		
 		
 		
-		ItemStack Glass = new ItemStack(Material.STAINED_GLASS_PANE, 1, (byte) 7);;
+		ItemStack Glass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);;
 		ItemMeta GlassMeta = Glass.getItemMeta();
 		Glass.setAmount(1);
 	    GlassMeta.setDisplayName(" ");
@@ -33,34 +33,34 @@ public class Belohnungen implements CommandExecutor {
 		
 		ItemStack daily = new ItemStack(Material.ENDER_CHEST);
 		ItemMeta dailyMeta = daily.getItemMeta();
-		dailyMeta.setDisplayName("§dGewöhnliche Kiste");
+		dailyMeta.setDisplayName("Â§dGewÃ¶hnliche Kiste");
 		ArrayList<String> dailyLore = new ArrayList<String>();
-		dailyLore.add("§6Du kannst diese Kiste");
-		dailyLore.add("§6mit einem Schlüssel öffnen,");
-		dailyLore.add("§6welchen du durch §c/vote");
-		dailyLore.add("§6erhalten kannst");
+		dailyLore.add("Â§6Du kannst diese Kiste");
+		dailyLore.add("Â§6mit einem SchlÃ¼ssel Ã¶ffnen,");
+		dailyLore.add("Â§6welchen du durch Â§c/vote");
+		dailyLore.add("Â§6erhalten kannst");
 		dailyMeta.setLore(dailyLore);
 		daily.setItemMeta(dailyMeta);
 		
 		ItemStack rare = new ItemStack(Material.ENDER_CHEST);
 		ItemMeta rareMeta = rare.getItemMeta();
-		rareMeta.setDisplayName("§dSeltene Kiste");
+		rareMeta.setDisplayName("Â§dSeltene Kiste");
 		ArrayList<String> rareLore = new ArrayList<String>();
-	    rareLore.add("§6Du kannst diese Kiste");
-		rareLore.add("§6mit einem Schlüssel öffnen,");
-		rareLore.add("§6welchen du durch §c/vote");
-		rareLore.add("§6erhalten kannst");
+	    rareLore.add("Â§6Du kannst diese Kiste");
+		rareLore.add("Â§6mit einem SchlÃ¼ssel Ã¶ffnen,");
+		rareLore.add("Â§6welchen du durch Â§c/vote");
+		rareLore.add("Â§6erhalten kannst");
 		rareMeta.setLore(rareLore);
 		rare.setItemMeta(rareMeta);
 		
 		ItemStack epic = new ItemStack(Material.ENDER_CHEST);
 		ItemMeta epicMeta = epic.getItemMeta();
-		epicMeta.setDisplayName("§dEpische Kiste");
+		epicMeta.setDisplayName("Â§dEpische Kiste");
 		ArrayList<String> epicLore = new ArrayList<String>();
-	    epicLore.add("§6Du kannst diese Kiste");
-		epicLore.add("§6mit einem Schlüssel öffnen,");
-		epicLore.add("§6welchen du durch §c/vote");
-		epicLore.add("§6erhalten kannst");
+	    epicLore.add("Â§6Du kannst diese Kiste");
+		epicLore.add("Â§6mit einem SchlÃ¼ssel Ã¶ffnen,");
+		epicLore.add("Â§6welchen du durch Â§c/vote");
+		epicLore.add("Â§6erhalten kannst");
 		epicMeta.setLore(epicLore);
 		epic.setItemMeta(epicMeta);
 		
@@ -113,10 +113,10 @@ public class Belohnungen implements CommandExecutor {
 		inv.setItem(25, Glass);
 		inv.setItem(26, Glass);
 		if(p.hasPermission("main.user")) {
-		p.playSound(p.getLocation(), Sound.BLOCK_ENDERCHEST_OPEN, 3, 2);
+		p.playSound(p.getLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 3, 2);
 		p.openInventory(inv);
 		} else {
-			p.sendMessage(Main.prefix + "§cDu musst erst das Tutorial machen!");
+			p.sendMessage(Main.prefix + "Â§cDu musst erst das Tutorial machen!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		}
 		return false;

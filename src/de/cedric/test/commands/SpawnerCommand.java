@@ -14,7 +14,7 @@ public class SpawnerCommand implements CommandExecutor {
 		
 		Player p = (Player) sender;
 		
-		ItemStack spawner = new ItemStack(Material.MOB_SPAWNER, 1, (short) 92);
+		ItemStack spawner = new ItemStack(Material.SPAWNER, 1, (short) 92);
 		ItemMeta spawnerMeta = spawner.getItemMeta();
 		spawner.setAmount(1);
 		spawner.setItemMeta(spawnerMeta);

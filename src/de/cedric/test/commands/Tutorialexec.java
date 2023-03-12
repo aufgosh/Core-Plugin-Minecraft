@@ -42,7 +42,7 @@ public class Tutorialexec {
 			public void run() {
 				if(count != 0) {
 				
-				p.sendMessage(Main.prefix +"§aDu wirst in§c " + count + " §asekunden teleportiert!");
+				p.sendMessage(Main.prefix +"ï¿½aDu wirst inï¿½c " + count + " ï¿½asekunden teleportiert!");
 				p.playSound(p.getLocation(), Sound.BLOCK_WOODEN_TRAPDOOR_OPEN, 3, 2);
 				}
 				if(count == 0) {
@@ -60,8 +60,8 @@ public class Tutorialexec {
 					
 
 					p.teleport(loc);
-					p.sendMessage(Main.prefix +"§aDu wurdest erfolgreich teleportiert!");
-					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMEN_TELEPORT, 3, 2);
+					p.sendMessage(Main.prefix +"ï¿½aDu wurdest erfolgreich teleportiert!");
+					p.playSound(p.getLocation(),Sound.ENTITY_ENDERMAN_TELEPORT, 3, 2);
 					
 					countdown.get(p).cancel();
 					countdown.remove(p);
@@ -84,7 +84,7 @@ public class Tutorialexec {
 		}
 		
 		countdown.get(this.p).cancel();
-		p.sendMessage(Main.prefix +"§cTeleportvorgang abgebrochen!");
+		p.sendMessage(Main.prefix +"ï¿½cTeleportvorgang abgebrochen!");
 		p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		countdown.remove(this.p);
 	}
