@@ -86,7 +86,7 @@ public class PerkCommand implements CommandExecutor {
 		Glass.setItemMeta(GlassMeta);
 		
 
-		ItemStack Hunger = new ItemStack(Material.LEGACY_RED_ROSE);
+		ItemStack Hunger = new ItemStack(Material.POPPY);
 		ItemMeta HungerMeta = Hunger.getItemMeta();
 		HungerMeta.setDisplayName("§6Photosynthesist");
 		ArrayList<String> HungerLore = new ArrayList<String>();
@@ -143,7 +143,7 @@ public class PerkCommand implements CommandExecutor {
 		TankMeta.setLore(TankLore);
 		Tank.setItemMeta(TankMeta);
 		
-		ItemStack undead = new ItemStack(Material.LEGACY_SKULL_ITEM, 1, (short) 0);
+		ItemStack undead = new ItemStack(Material.SKELETON_SKULL);
 		ItemMeta undeadmeta = undead.getItemMeta();
 		ArrayList<String> undeadLore = new ArrayList<String>();
 		undeadLore.add("§aNach dem du eigentlich Stribst, erwachst du als");
@@ -157,7 +157,7 @@ public class PerkCommand implements CommandExecutor {
 		undeadmeta.setLore(undeadLore);
 		undead.setItemMeta(undeadmeta);
 		
-		ItemStack berserker = new ItemStack(Material.INK_SAC, 1, (short) 1);
+		ItemStack berserker = new ItemStack(Material.RED_DYE);
 		ItemMeta berserkerMeta = berserker.getItemMeta();
 		ArrayList<String> berserkerLore = new ArrayList<String>();
 		berserkerLore.add("§aUm so weniger Leben du hast,");
