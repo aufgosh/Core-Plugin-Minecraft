@@ -106,7 +106,7 @@ public class JoinListener implements Listener {
 
 		utilitiesFunctions.clearPlayerChat(p);
 		utilitiesFunctions.sendHelpMessage(p);
-		p.sendTitle("§aWelcome!", "", 15,15,15);
+		p.sendTitle("§9Willkommen!", "", 30,30,30);
 	
 
 		if(!p.hasPlayedBefore()) {
