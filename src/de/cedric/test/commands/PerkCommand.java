@@ -98,7 +98,6 @@ public class PerkCommand implements CommandExecutor {
 		HungerLore.add("§7Du kannst immer nur eine Fähigkeit");
 		HungerLore.add("§7aktiviert haben!");
 		HungerMeta.setLore(HungerLore);
-		Hunger.setDurability((short) 1);
 		Hunger.setItemMeta(HungerMeta);
 		
 		

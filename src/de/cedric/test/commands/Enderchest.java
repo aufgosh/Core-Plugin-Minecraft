@@ -23,24 +23,24 @@ public class Enderchest implements CommandExecutor {
 		if(p.hasPermission("main.user")) {
 		if(args.length == 0) {
 			p.openInventory(p.getEnderChest());
-			p.sendMessage("§7*§aDu öffnest deine Enderchest§7*");
+			p.sendMessage("Â§7*Â§aDu Ã¶ffnest deine EnderchestÂ§7*");
 		} else if (args.length == 1) {
 			if(!p.hasPermission("main.admin")) {
 				p.openInventory(p.getEnderChest());
-				p.sendMessage("§7*§aDu öffnest deine Enderchest§7*");
+				p.sendMessage("Â§7*Â§aDu Ã¶ffnest deine Enderchestï¿½7*");
 				return true;
 			}
 			Player player = Bukkit.getPlayer(args[0]);
 			if(player == null) {
-				p.sendMessage("§cDieser Spieler ist nicht online!");
+				p.sendMessage("Â§cDieser Spieler ist nicht online!");
 				return true;
 			}
 			p.openInventory(player.getEnderChest());
-			p.sendMessage("§7*§aDu öffnest die Enderchest von§c " +player.getName() + "§7*");
+			p.sendMessage("Â§7*Â§aDu Ã¶ffnest die Enderchest vonÂ§c " +player.getName() + "Â§7*");
 			enderchest.contains(p.getUniqueId());
 		}
 		} else {
-			p.sendMessage(Main.prefix + "§cDu musst erst das Tutorial machen!");
+			p.sendMessage(Main.prefix + "Â§cDu musst erst das Tutorial machen!");
 			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 		}
 		return false;

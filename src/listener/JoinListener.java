@@ -34,6 +34,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -236,6 +237,12 @@ public class JoinListener implements Listener {
 		}
 	
 	@EventHandler
+	public void maxPlayers(ServerListPingEvent e) {
+		e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 1);
+		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.1 §8| §4❤§cJasi§4❤");
+	}
+	
+	@EventHandler
 	public void onUnknown(PlayerCommandPreprocessEvent e) {
 		if(!(e.isCancelled())) {
 		Player p = e.getPlayer();
@@ -266,8 +273,6 @@ public class JoinListener implements Listener {
 			 eventCommand.wardenKillBroadcast(p);
 		 }
 		 
-		 
-		 p.sendMessage("§aMob§7:§e " + e.getEntity());
 		}
 		}
 	

@@ -2,7 +2,6 @@ package de.cedric.test.commands;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
