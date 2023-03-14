@@ -239,7 +239,7 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void maxPlayers(ServerListPingEvent e) {
 		e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 1);
-		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.1 §8| §4❤§cJasi§4❤");
+		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.12 §8| §4❤§cJasi§4❤");
 	}
 	
 	@EventHandler

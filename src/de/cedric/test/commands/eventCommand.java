@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,6 +15,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 import de.cedric.test.main.Main;
+import net.minecraft.core.particles.Particles;
+import net.minecraft.network.protocol.game.PacketPlayOutWorldParticles;
+import utilities.utilitiesFunctions;
 
 public class eventCommand implements CommandExecutor {
 	
@@ -21,7 +25,7 @@ public class eventCommand implements CommandExecutor {
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			//Get our firework
-			
+			utilitiesFunctions.spawnParticleRingAroundPlayer(p, 0.1, Particle.REDSTONE, Particle.REDSTONE, Color.PURPLE, Color.FUCHSIA);
 			Location loc = p.getLocation();
 			
 			double xcord = loc.getX();
@@ -79,7 +83,7 @@ public class eventCommand implements CommandExecutor {
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			//Get our firework
-			
+			utilitiesFunctions.spawnParticleRingAroundPlayer(p, 0.1, Particle.REDSTONE, Particle.REDSTONE, Color.BLUE, Color.AQUA);
 			Location loc = p.getLocation();
 			
 			double xcord = loc.getX();
@@ -137,6 +141,8 @@ public class eventCommand implements CommandExecutor {
 	public static void witherKillBroadcast(Player killer) {
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
+			
+			utilitiesFunctions.spawnParticleRingAroundPlayer(p, 0.1, Particle.REDSTONE, Particle.REDSTONE, Color.BLACK, Color.GRAY);
 			//Get our firework
 			
 			Location loc = p.getLocation();
@@ -198,11 +204,15 @@ public class eventCommand implements CommandExecutor {
 		
 		
 		
+		
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			//Get our firework
+			
+			utilitiesFunctions.spawnParticleRingAroundPlayer(p, 0.1, Particle.REDSTONE, Particle.REDSTONE, Color.BLACK, Color.SILVER);
 			
 			Location loc = p.getLocation();
+
 			
+			//Get our firework
 			double xcord = loc.getX();
 			double ycord = loc.getY() + 4;
 			double zcord = loc.getZ();
@@ -218,7 +228,7 @@ public class eventCommand implements CommandExecutor {
 	       
 	        //Colors
 	        builder.withColor(Color.BLACK);
-	        builder.withColor(Color.GRAY);
+	        builder.withColor(Color.SILVER);
 
 	        //Sparkly af
 	        builder.withFlicker();

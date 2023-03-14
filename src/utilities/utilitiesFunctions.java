@@ -1,5 +1,8 @@
 package utilities;
 
+import org.bukkit.Color;
+import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
@@ -35,6 +38,18 @@ public class utilitiesFunctions {
 			p.sendMessage(" ");
 		}
 	}
+	
+public static void spawnParticleRingAroundPlayer(Player p, double yoffset, Particle particle1, Particle particle2, Color color1, Color color2) {
+	Location location = p.getLocation();
+	int size = 1;
+    for (int d = 0; d <= 90; d += 1) {
+        Location particleLoc = new Location(location.getWorld(), location.getX(), (location.getY()+yoffset), location.getZ());
+        particleLoc.setX(location.getX() + Math.cos(d) * size);
+        particleLoc.setZ(location.getZ() + Math.sin(d) * size);
+        location.getWorld().spawnParticle(particle1, particleLoc, 1, new Particle.DustOptions(color1, 2));
+        location.getWorld().spawnParticle(particle2, particleLoc, 1, new Particle.DustOptions(color2, 2));
+    }
+}
 	
 
 }

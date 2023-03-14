@@ -4,13 +4,15 @@ package de.cedric.test.commands;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
-
+import org.bukkit.Color;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
 import de.cedric.test.main.Main;
+import utilities.utilitiesFunctions;
 
  public class TpaAcceptCommand {
    
@@ -45,6 +47,7 @@ import de.cedric.test.main.Main;
                if(count != 0) {
                 p2.sendMessage(Main.prefix +"§aDu wirst in§c " + count + " §asekunden teleportiert!");
         		p2.playSound(p.getLocation(), Sound.BLOCK_WOODEN_TRAPDOOR_OPEN, 3, 2);
+				utilitiesFunctions.spawnParticleRingAroundPlayer(p, (((double)count/1.55) / 2.5), Particle.REDSTONE, Particle.REDSTONE, Color.FUCHSIA, Color.SILVER);
             }
                 if(count == 0) {
                    

@@ -1,5 +1,5 @@
 name: Core
-version: 1.1
+version: 1.12
 api-version: '1.19'
 main: de.cedric.test.main.Main
 
