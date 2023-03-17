@@ -38,6 +38,7 @@ import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.messageCommand;
 import de.cedric.test.commands.newSpawnCommand;
 import de.cedric.test.commands.skillCommand;
+import de.cedric.test.commands.skillMenuCommand;
 import listener.DamageListener;
 import listener.JoinListener;
 import listener.Stealth;
@@ -106,6 +107,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("message").setExecutor(new messageCommand());
 		getCommand("event").setExecutor(new eventCommand());
 		getCommand("healthcheck").setExecutor(new skillCommand());
+		getCommand("skillmenu").setExecutor(new skillMenuCommand());
 		
 		
 		
