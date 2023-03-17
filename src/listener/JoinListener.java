@@ -10,13 +10,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -53,6 +51,7 @@ import de.cedric.test.commands.TutorialSpawn;
 import de.cedric.test.commands.Tutorialexec;
 import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.newHome;
+import de.cedric.test.commands.skillCommand;
 import de.cedric.test.main.Main;
 import utilities.checkForBan;
 import utilities.utilitiesFunctions;
@@ -187,6 +186,9 @@ public class JoinListener implements Listener {
 	public void on(PlayerRespawnEvent e) {
 		
 		Player p = e.getPlayer();
+		
+		skillCommand.updateHealthCore(p);
+		
 		if(PerkCommand.cfg5.contains(p.getName())) {
 			p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 0));
@@ -202,7 +204,7 @@ public class JoinListener implements Listener {
 			resetCooldown(p);
 		}
 		}.runTaskLater(Main.getPlugin(), 20);
-		}
+	}
 	
 	
 	@EventHandler

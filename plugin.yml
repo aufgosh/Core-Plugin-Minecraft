@@ -40,4 +40,5 @@ commands:
    message:
       aliases: msg
    event:
+   healthcheck:
    

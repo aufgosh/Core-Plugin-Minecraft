@@ -37,6 +37,8 @@ import de.cedric.test.commands.ccCommand;
 import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.messageCommand;
 import de.cedric.test.commands.newSpawnCommand;
+import de.cedric.test.commands.skillCommand;
+import listener.DamageListener;
 import listener.JoinListener;
 import listener.Stealth;
 
@@ -103,6 +105,7 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("passive").setExecutor(new PerkCommand());
 		getCommand("message").setExecutor(new messageCommand());
 		getCommand("event").setExecutor(new eventCommand());
+		getCommand("healthcheck").setExecutor(new skillCommand());
 		
 		
 		
@@ -112,6 +115,7 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new MuteCommand(), this);
 		pm.registerEvents(new Stealth(), this);
 		pm.registerEvents(this, this);
+		pm.registerEvents(new DamageListener(), this);
 	}
 	
 	
