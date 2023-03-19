@@ -40,8 +40,13 @@ public class skillCommand implements CommandExecutor {
 		
 		double health = getHealthCore(p);
 		
-		p.setMaxHealth(getHealthCore(p));
-		p.setHealthScale(getHealthCore(p));
+		if(getHealthCore(p) == 9) {
+			p.setMaxHealth(20 + ((getHealthCore(p) + 1)*2));
+			p.setHealthScale(20 + ((getHealthCore(p) + 1)*2));	
+		} else {
+			p.setMaxHealth(20 + (getHealthCore(p)*2));
+			p.setHealthScale(20 + (getHealthCore(p)*2));
+		}
 		
 		p.sendMessage(health + "");
 		return;
@@ -52,8 +57,19 @@ public class skillCommand implements CommandExecutor {
 		return Damage;
 	}
 	
-	public static void setDamageCore(Player p, double i) {
+	public static void setDamageCore(Player p, int i) {
 		cfg.set(p.getName() + ".Damage", i);
+		saveCfg(file);
+		return;
+	}
+	
+	public static int getSkillpointsCore(Player p) {
+		int points = cfg.getInt(p.getName() + ".skillpoints");
+		return points;
+	}
+	
+	public static void setSkillpointsCore(Player p, int i) {
+		cfg.set(p.getName() + ".skillpoints", i);
 		saveCfg(file);
 		return;
 	}
@@ -83,6 +99,10 @@ public class skillCommand implements CommandExecutor {
 		
 		if(args[0].equalsIgnoreCase("gethealth")) {
 			p.sendMessage("current health: " + getHealthCore(p));
+		}
+		
+		if(args[0].equalsIgnoreCase("getdamage")) {
+			p.sendMessage("current Damagelevel: " + getDamageCore(p));
 		}
 		
 		if(args[0].equalsIgnoreCase("setdamage")) {

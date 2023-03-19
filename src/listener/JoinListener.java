@@ -100,6 +100,7 @@ public class JoinListener implements Listener {
 		Player p = e.getPlayer();
 		
 		checkForBan.banCheck(p);
+		skillCommand.updateHealthCore(p);
 		
 		e.setJoinMessage("§8[§a+§8] " + p.getName());
 

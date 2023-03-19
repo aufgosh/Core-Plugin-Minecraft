@@ -19,14 +19,13 @@ public class DamageListener implements Listener {
 				
 				Player damager = (Player) e.getDamager();
 				int FinalDamage = (int) (e.getDamage() * (((100 + (skillCommand.getDamageCore(damager)*5))/100)));
-				damager.sendMessage(FinalDamage + "");
+				e.setDamage(FinalDamage);
 			}
 			
 			if(entity instanceof Player) {
 				
 				Player damaged = (Player) e.getEntity();
-				double damagebefore = e.getDamage();
-				double modifier = (100 - skillCommand.getDamageReductionCore(damaged))/100;
+				double modifier = (100 - (skillCommand.getDamageReductionCore(damaged)*5))/100;
 				double FinalDamage = (double) (e.getDamage() * modifier);
 				e.setDamage(FinalDamage);
 			}

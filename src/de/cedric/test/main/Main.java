@@ -42,6 +42,7 @@ import de.cedric.test.commands.skillMenuCommand;
 import listener.DamageListener;
 import listener.JoinListener;
 import listener.Stealth;
+import listener.skillMenuListener;
 
 public class Main extends JavaPlugin implements Listener {
 	
@@ -118,6 +119,7 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new Stealth(), this);
 		pm.registerEvents(this, this);
 		pm.registerEvents(new DamageListener(), this);
+		pm.registerEvents(new skillMenuListener(), this);
 	}
 	
 	
