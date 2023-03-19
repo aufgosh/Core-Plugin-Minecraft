@@ -152,6 +152,7 @@ public class JoinListener implements Listener {
 		
 		Player p = (Player) en;
 		
+		/*
 		if(PerkCommand.cfg5.contains(p.getName())) {
 			
 			 if (p.getPlayer().getHealth() < 7) {
@@ -180,6 +181,7 @@ public class JoinListener implements Listener {
 			}
 		
 		}
+		*/
 		
 	}
 	
@@ -189,7 +191,7 @@ public class JoinListener implements Listener {
 		Player p = e.getPlayer();
 		
 		skillCommand.updateHealthCore(p);
-		
+		/*
 		if(PerkCommand.cfg5.contains(p.getName())) {
 			p.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
 			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 9999999, 0));
@@ -199,6 +201,8 @@ public class JoinListener implements Listener {
 			p.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 9999999, 4));
 			
 		}
+		
+		*/
 		new BukkitRunnable() {
 		@Override
 		public void run() {
@@ -242,7 +246,7 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void maxPlayers(ServerListPingEvent e) {
 		e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 1);
-		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.12 §8| §4❤§cJasi§4❤");
+		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.12 §8| §4❤§cJasi§4❤ §8| 🍔");
 	}
 	
 	@EventHandler
@@ -292,6 +296,7 @@ public class JoinListener implements Listener {
 			new Tutorialexec((Player)e.getEntity()).stop();
 			new TpaAcceptCommand((Player) e.getEntity()).stop();
 		}
+		/*
 		if(PerkCommand.cfg6.contains(p.getName())) {
 			if(e.getCause() == DamageCause.FALL) {
 				e.setCancelled(true);
@@ -335,6 +340,8 @@ public class JoinListener implements Listener {
 				}
 			
 			}
+			
+			*/
 
 				
 			
@@ -516,7 +523,7 @@ public class JoinListener implements Listener {
 			
 		long jetzt = System.currentTimeMillis();
 		
-			
+		/*
 		  if(item.getItemMeta().getDisplayName().equals("§6Lernwillig")) {
 				PerkCommand.cfg.set(p.getName(), 1);
 				PerkCommand.cfg1.set(p.getName(), null);
@@ -737,6 +744,8 @@ public class JoinListener implements Listener {
 						a.printStackTrace();
 					}
 				}
+			  
+			  */
 			
 		}
 	}
@@ -764,10 +773,12 @@ public class JoinListener implements Listener {
 	public void on(PlayerExpChangeEvent e) {
 		Player p = e.getPlayer();
 		
+		/*
 		if(PerkCommand.cfg.contains(p.getName())) {
 			e.setAmount(e.getAmount()*2);
 	           
         }
+        */
 	}
 	
 	@EventHandler
@@ -776,11 +787,13 @@ public class JoinListener implements Listener {
 		
 		Player p = (Player) en;
 		
+		/*
 		if(PerkCommand.cfg1.contains(p.getName())) {
 			e.setCancelled(true);
 			
 	           
         }
+        */
 	}
 	
 	HashMap<String, ItemStack[]> inv = new HashMap<String, ItemStack[]>();
@@ -803,7 +816,7 @@ public class JoinListener implements Listener {
          
 			
 			long jetzt = System.currentTimeMillis();
-			
+			/*
 	    	if(PerkCommand.cfg4.contains(p.getName())) {
 	    		  inv.put(p.getName(), p.getInventory().getContents());
 	    		  
@@ -856,7 +869,7 @@ public class JoinListener implements Listener {
 
 	 	        
 	 	    		
-	    } }
+	    }*/ }
 
 	
 

@@ -64,13 +64,13 @@ public class Main extends JavaPlugin implements Listener {
 		
 
 
-		loadConfig(PerkCommand.cfg);
-		loadConfig(PerkCommand.cfg1);
-		loadConfig(PerkCommand.cfg2);
-		loadConfig(PerkCommand.cfg3);
-		loadConfig(PerkCommand.cfg4);
-		loadConfig(PerkCommand.cfg5);
-		loadConfig(PerkCommand.cfg6);
+		//loadConfig(PerkCommand.cfg);
+		//loadConfig(PerkCommand.cfg1);
+		//loadConfig(PerkCommand.cfg2);
+		//loadConfig(PerkCommand.cfg3);
+		//loadConfig(PerkCommand.cfg4);
+		//loadConfig(PerkCommand.cfg5);
+		//loadConfig(PerkCommand.cfg6);
 	    getConfig().set("invite", null);
 		
 		getConfig().options().copyDefaults(true);
@@ -104,7 +104,7 @@ public class Main extends JavaPlugin implements Listener {
 		
 		getCommand("home").setExecutor(new HomeCommand());
 		getCommand("sethome").setExecutor(new SetHomeCommand());
-		getCommand("passive").setExecutor(new PerkCommand());
+		//getCommand("passive").setExecutor(new PerkCommand());
 		getCommand("message").setExecutor(new messageCommand());
 		getCommand("event").setExecutor(new eventCommand());
 		getCommand("healthcheck").setExecutor(new skillCommand());
@@ -116,7 +116,7 @@ public class Main extends JavaPlugin implements Listener {
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new JoinListener(), this);
 		pm.registerEvents(new MuteCommand(), this);
-		pm.registerEvents(new Stealth(), this);
+		//pm.registerEvents(new Stealth(), this);
 		pm.registerEvents(this, this);
 		pm.registerEvents(new DamageListener(), this);
 		pm.registerEvents(new skillMenuListener(), this);
