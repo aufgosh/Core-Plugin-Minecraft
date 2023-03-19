@@ -36,6 +36,7 @@ public class skillCommand implements CommandExecutor {
 		return;
 	}
 	
+	
 	public static void updateHealthCore(Player p) {
 		
 		double health = getHealthCore(p);

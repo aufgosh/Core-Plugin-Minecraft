@@ -34,7 +34,7 @@ public class skillMenuListener implements Listener {
 		ItemStack[] unlockedstackHealth = skillMenuCommand.getItemStacksHealthEnhancementUnlocked(p);
 		ItemStack[] lockedstackHealth = skillMenuCommand.getItemStacksHealthEnhancementLocked(p);
 		
-		if(e.getView().getTitle().equals("§9Skillpoints")) {
+		if(e.getView().getTitle().equals("§9Confirm Purchase")) {
 			
 			e.setCancelled(true);
 			
@@ -45,6 +45,44 @@ public class skillMenuListener implements Listener {
 			if (item == null || !item.hasItemMeta()) {
 				return;
 			}
+			
+			if(item.getItemMeta().getDisplayName().equals("§aConfirm")) {
+				if(p.getLevel() >= 20) {
+					p.setLevel((p.getLevel() - 20));
+					skillCommand.setSkillpointsCore(p, (skillCommand.getSkillpointsCore(p)+1));
+					p.sendMessage(Main.prefix + "§aYou have recieved one skillpoint§7.");
+					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
+				} else {
+					p.sendMessage(Main.prefix + "§cYou do not have enough level§7.");
+					p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
+				}
+				
+			}
+			
+			if(item.getItemMeta().getDisplayName().equals("§cDecline")) {
+				skillMenuCommand.openSkillMenu(p);
+				
+			}
+		}
+		
+		if(e.getView().getTitle().equals("§9Skillpoints§7: §e" + skillCommand.getSkillpointsCore(p))) {
+			
+			e.setCancelled(true);
+			
+			if (open == null) {
+				return;
+			}
+			
+			if (item == null || !item.hasItemMeta()) {
+				return;
+			}
+			
+			if(item.getItemMeta().getDisplayName().equals("§eBuy Skillpoints")) {
+				skillMenuCommand.openConfirmationMenu(p);
+				
+			}
+			
+			
 			
 			if(item.getItemMeta().getDisplayName().equals("§cDamage Enhancement")) {
 				skillMenuCommand.openDamageLevelSkillMenu(p);

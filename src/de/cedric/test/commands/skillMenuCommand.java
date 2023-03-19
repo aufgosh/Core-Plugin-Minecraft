@@ -394,8 +394,56 @@ public class skillMenuCommand implements CommandExecutor {
 		p.openInventory(inv);
 	}
 	
+	public static void openConfirmationMenu(Player p) {
+		Inventory inv = Bukkit.createInventory(null, 27, "§9Confirm Purchase");
+		
+		ItemStack Glass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
+		ItemMeta GlassMeta = Glass.getItemMeta();
+		Glass.setAmount(1);
+	    GlassMeta.setDisplayName(" ");
+		Glass.setItemMeta(GlassMeta);
+		
+		ItemStack Decline = new ItemStack(Material.RED_CONCRETE);
+		ItemMeta DeclineMeta = Decline.getItemMeta();
+		Decline.setAmount(1);
+		DeclineMeta.setDisplayName("§cDecline");
+		ArrayList<String> DeclineLore = new ArrayList<String>();
+		DeclineLore.add("§cDo you really want to buy");
+		DeclineLore.add("§e1 Skillpoint§c for §e20 Level§7?");
+		DeclineMeta.setLore(DeclineLore);
+		Decline.setItemMeta(DeclineMeta);
+		
+		ItemStack Confirm = new ItemStack(Material.GREEN_CONCRETE);
+		ItemMeta ConfirmMeta = Confirm.getItemMeta();
+		Confirm.setAmount(1);
+		ConfirmMeta.setDisplayName("§AConfirm");
+		ArrayList<String> ConfirmLore = new ArrayList<String>();
+		ConfirmLore.add("§aDo you really want to buy");
+		ConfirmLore.add("§e1 Skillpoint§a for §e20 Level§7?");
+		ConfirmMeta.setLore(ConfirmLore);
+		Confirm.setItemMeta(ConfirmMeta);
+		
+		
+		for(int i = 0; i<27; i++) {
+			if(!(i == 12 || i == 14 )) {
+			inv.setItem(i, Glass);
+			} else {
+				switch(i) {
+				case 12:
+					inv.setItem(i, Confirm);
+					break;
+				case 14:
+					inv.setItem(i, Decline);
+					break;
+				}
+			}
+		}
+		
+		p.openInventory(inv);
+	}
+	
 	public static void openSkillMenu(Player p) {
-		Inventory inv = Bukkit.createInventory(null, 54, "§9Skillpoints");
+		Inventory inv = Bukkit.createInventory(null, 54, "§9Skillpoints§7: §e" + skillCommand.getSkillpointsCore(p));
 		
 		ItemStack Glass = new ItemStack(Material.BLACK_STAINED_GLASS_PANE);
 		ItemMeta GlassMeta = Glass.getItemMeta();
@@ -431,11 +479,25 @@ public class skillMenuCommand implements CommandExecutor {
 		DefenseMeta.setLore(DefenseLore);
 		Defense.setItemMeta(DefenseMeta);
 		
+		ItemStack Experience = new ItemStack(Material.EXPERIENCE_BOTTLE);
+		ItemMeta ExperienceMeta = Experience.getItemMeta();
+		Experience.setAmount(1);
+		ExperienceMeta.setDisplayName("§eBuy Skillpoints");
+		ArrayList<String> ExperienceLore = new ArrayList<String>();
+		ExperienceLore.add("§aBuy §eSkillpoints§a with experience§7.");
+		ExperienceLore.add("");
+		ExperienceLore.add("§a1 §eSkillpoint §7= §a20 Level§7.");
+		ExperienceMeta.setLore(ExperienceLore);
+		Experience.setItemMeta(ExperienceMeta);
+		
 		for(int i = 0; i<54; i++) {
 			if(!(i == 13 || i == 29 || i == 31 || i == 33)) {
 			inv.setItem(i, Glass);
 			} else {
 				switch(i) {
+				case 13:
+					inv.setItem(i, Experience);
+					break;
 				case 29:
 					inv.setItem(i, Damage);
 					break;
