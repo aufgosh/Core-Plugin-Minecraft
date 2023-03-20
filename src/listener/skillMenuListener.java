@@ -110,13 +110,6 @@ public class skillMenuListener implements Listener {
 				return;
 			}
 			
-			for(int i = 0; i<unlockedstackHealth.length; i++) {
-				if(item.getItemMeta().getDisplayName().equals(unlockedstackHealth[i].getItemMeta().getDisplayName().toString())) {
-					p.sendMessage("Display Name: " + unlockedstackHealth[i].getItemMeta().getDisplayName().toString());
-					
-				}
-				
-			}
 			
 			for(int i = unlockedstackHealth.length; i<lockedstackHealth.length; i++ ) {
 				if(item.getItemMeta().getDisplayName().equals(lockedstackHealth[i].getItemMeta().getDisplayName().toString())) {
@@ -155,13 +148,6 @@ public class skillMenuListener implements Listener {
 				return;
 			}
 			
-			for(int i = 0; i<unlockedstackDefensive.length; i++) {
-				if(item.getItemMeta().getDisplayName().equals(unlockedstackDefensive[i].getItemMeta().getDisplayName().toString())) {
-					p.sendMessage("Display Name: " + unlockedstackDefensive[i].getItemMeta().getDisplayName().toString());
-					
-				}
-				
-			}
 			
 			for(int i = unlockedstackDefensive.length; i<lockedstackDefensive.length; i++ ) {
 				if(item.getItemMeta().getDisplayName().equals(lockedstackDefensive[i].getItemMeta().getDisplayName().toString())) {
@@ -199,13 +185,6 @@ public class skillMenuListener implements Listener {
 				return;
 			}
 			
-			for(int i = 0; i<unlockedstack.length; i++) {
-				if(item.getItemMeta().getDisplayName().equals(unlockedstack[i].getItemMeta().getDisplayName().toString())) {
-					p.sendMessage("Display Name: " + unlockedstack[i].getItemMeta().getDisplayName().toString());
-					
-				}
-				
-			}
 			
 			for(int i = unlockedstack.length; i<lockedstack.length; i++ ) {
 				if(item.getItemMeta().getDisplayName().equals(lockedstack[i].getItemMeta().getDisplayName().toString())) {
