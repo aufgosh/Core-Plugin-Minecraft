@@ -62,13 +62,10 @@ import utilities.utilitiesFunctions;
 
 public class JoinListener implements Listener {
 	
-	File file = new File("plugins/Test", "homes.yml");
+	File file = new File("plugins/Core", "homes.yml");
 	FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
 	
 	
-	private void resetCooldown(Player p) {
-		p.getAttribute(Attribute.GENERIC_ATTACK_SPEED).setBaseValue(100D);
-	}
 	
 	
 	@EventHandler
@@ -83,7 +80,12 @@ public class JoinListener implements Listener {
 		//	e.setCancelled(true);
 	//	}
 		
-		if(msg.equalsIgnoreCase("/ver") || msg.equalsIgnoreCase("/version") || msg.equalsIgnoreCase("/bukkit:ver") || msg.equalsIgnoreCase("/bukkit:version")) {
+		/*
+		
+		if(!p.hasPermission("main.admin")) {
+			
+		
+		if(msg.equalsIgnoreCase("/ver") || msg.equalsIgnoreCase("/version") || msg.equalsIgnoreCase("/bukkit:ver") || msg.equalsIgnoreCase("/bukkit:version") || msg.equalsIgnoreCase("/rtp") || msg.equalsIgnoreCase("/drtp") || msg.equalsIgnoreCase("/znpcs") || msg.equalsIgnoreCase("/pcrate") ) {
 			p.sendMessage(Main.error);	
 			e.setCancelled(true);
 		}
@@ -91,6 +93,8 @@ public class JoinListener implements Listener {
 			e.setCancelled(true);
 			utilitiesFunctions.sendHelpMessage(p);
 		}
+		}
+		*/
 		}
 
 	
@@ -115,11 +119,13 @@ public class JoinListener implements Listener {
 			ItemMeta testMeta = food.getItemMeta();
 			food.setAmount(16);
 			
-			ItemStack shovel = new ItemStack(Material.GOLDEN_SHOVEL);
-			ItemMeta shovelmeta = shovel.getItemMeta();
+			ItemStack pickaxe = new ItemStack(Material.STONE_PICKAXE);
+			ItemStack axe = new ItemStack(Material.STONE_AXE);
 			
 			food.setItemMeta(testMeta);
-			p.getPlayer().getInventory().addItem(food, shovel);
+			p.getPlayer().getInventory().addItem(pickaxe, axe, food);
+			
+			p.kickPlayer("§eHello!§a This is your first time playing§7,§a Player entrys have been made§7.§a Please rejoin§7.");
 		}
 	}
 	
@@ -141,6 +147,11 @@ public class JoinListener implements Listener {
 		blockedCommands.add("freischalten");
 		blockedCommands.add("aasdooqppaspdyymncxasdjaslde");
 		blockedCommands.add("aosdohjkouppiahopdsbnfreelasdouasd");
+		blockedCommands.add("rtp");
+		blockedCommands.add("drtp");
+		blockedCommands.add("znpcs");
+		blockedCommands.add("pcrate");
+		blockedCommands.add("heal");
 		e.getCommands().removeAll(blockedCommands);
 	}
 	}
@@ -203,12 +214,6 @@ public class JoinListener implements Listener {
 		}
 		
 		*/
-		new BukkitRunnable() {
-		@Override
-		public void run() {
-			resetCooldown(p);
-		}
-		}.runTaskLater(Main.getPlugin(), 20);
 	}
 	
 	
@@ -246,19 +251,21 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void maxPlayers(ServerListPingEvent e) {
 		e.setMaxPlayers(Bukkit.getOnlinePlayers().size() + 1);
-		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.12 §8| §4❤§cJasi§4❤ §8| 🍔");
+		e.setMotd("§dWillkommen auf dem Server§c! §8| §eCoreversion§7: §e1.14 §8| ");
 	}
 	
 	@EventHandler
 	public void onUnknown(PlayerCommandPreprocessEvent e) {
 		if(!(e.isCancelled())) {
 		Player p = e.getPlayer();
-		String msg = e.getMessage().split(" ") [0];
-		HelpTopic topic = Bukkit.getServer().getHelpMap().getHelpTopic(msg);
-		if(topic == null) {
-			p.sendMessage(Main.prefix + "§cDieser Command existiert nicht!");
-			p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
-			e.setCancelled(true);
+		if(!p.hasPermission("Main.Admin")) {
+			String msg = e.getMessage().split(" ") [0];
+			HelpTopic topic = Bukkit.getServer().getHelpMap().getHelpTopic(msg);
+			if(topic == null) {
+				p.sendMessage(Main.prefix + "§cDieser Command existiert nicht!");
+				p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
+				e.setCancelled(true);
+		}
 		}
 		}
 		}
@@ -288,7 +295,12 @@ public class JoinListener implements Listener {
 	public void onDmg(EntityDamageEvent e) {
 		
 		if(!(e.getEntity() instanceof Player)) { return; }
+		
 		Player p= (Player) e.getEntity();
+		
+		
+		
+		if(e.getCause().equals(e))
 		
 		if(e.getEntityType() == EntityType.PLAYER) {
 			new Spawn((Player) e.getEntity()).stop();
@@ -797,11 +809,6 @@ public class JoinListener implements Listener {
 	}
 	
 	HashMap<String, ItemStack[]> inv = new HashMap<String, ItemStack[]>();
-	    @EventHandler()
-	    public void onRespawn(PlayerRespawnEvent e){
-	        
-	    
-}
 	    
 	    public static HashMap<String, Long> cooldown1 = new HashMap<>();
 	   

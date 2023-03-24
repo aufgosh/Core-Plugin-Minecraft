@@ -2,6 +2,7 @@ package listener;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -15,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import de.cedric.test.commands.skillCommand;
 import de.cedric.test.commands.skillMenuCommand;
 import de.cedric.test.main.Main;
+import utilities.utilitiesFunctions;
 
 public class skillMenuListener implements Listener {
 	
@@ -34,6 +36,35 @@ public class skillMenuListener implements Listener {
 		ItemStack[] unlockedstackHealth = skillMenuCommand.getItemStacksHealthEnhancementUnlocked(p);
 		ItemStack[] lockedstackHealth = skillMenuCommand.getItemStacksHealthEnhancementLocked(p);
 		
+		
+		if(e.getView().getTitle().equals("§9Confirm Random Teleport")) {
+			
+			e.setCancelled(true);
+			
+			if (open == null) {
+				return;
+			}
+			
+			if (item == null || !item.hasItemMeta()) {
+				return;
+			}
+			
+			if(item.getItemMeta().getDisplayName().equals("§aConfirm")) {
+				if(p.getWorld().getName().equals("spawnworld")) {
+					p.closeInventory();
+					p.sendMessage(Main.prefix + "§eSending random teleport request§7...");
+					p.playSound(p, Sound.ENTITY_PUFFER_FISH_BLOW_OUT, 3, 2);
+					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "rtp " + p.getName());	
+				} else {
+					utilitiesFunctions.sendErrorCustom(p, "§cRandom Teleport requests from Spawn only§7.");
+				}
+			}
+			
+			if(item.getItemMeta().getDisplayName().equals("§cDecline")) { 
+				p.closeInventory();
+			}
+		}
+		
 		if(e.getView().getTitle().equals("§9Confirm Purchase")) {
 			
 			e.setCancelled(true);
@@ -52,6 +83,7 @@ public class skillMenuListener implements Listener {
 					skillCommand.setSkillpointsCore(p, (skillCommand.getSkillpointsCore(p)+1));
 					p.sendMessage(Main.prefix + "§aYou have recieved one skillpoint§7.");
 					p.playSound(p.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
+					skillMenuCommand.openSkillMenu(p);
 				} else {
 					p.sendMessage(Main.prefix + "§cYou do not have enough level§7.");
 					p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);

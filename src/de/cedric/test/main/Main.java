@@ -33,15 +33,18 @@ import de.cedric.test.commands.Tpaccept;
 import de.cedric.test.commands.TrashCommand;
 import de.cedric.test.commands.Tutorial;
 import de.cedric.test.commands.Tutorialtp;
+import de.cedric.test.commands.bootsCommand;
 import de.cedric.test.commands.ccCommand;
 import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.messageCommand;
 import de.cedric.test.commands.newSpawnCommand;
+import de.cedric.test.commands.requestRtp;
 import de.cedric.test.commands.skillCommand;
 import de.cedric.test.commands.skillMenuCommand;
 import listener.DamageListener;
 import listener.JoinListener;
 import listener.Stealth;
+import listener.onMovementListener;
 import listener.skillMenuListener;
 
 public class Main extends JavaPlugin implements Listener {
@@ -107,8 +110,10 @@ public class Main extends JavaPlugin implements Listener {
 		//getCommand("passive").setExecutor(new PerkCommand());
 		getCommand("message").setExecutor(new messageCommand());
 		getCommand("event").setExecutor(new eventCommand());
-		getCommand("healthcheck").setExecutor(new skillCommand());
+		//getCommand("healthcheck").setExecutor(new skillCommand());
 		getCommand("skillmenu").setExecutor(new skillMenuCommand());
+		getCommand("boots").setExecutor(new bootsCommand());
+		getCommand("requestServerRtp").setExecutor(new requestRtp());
 		
 		
 		
@@ -120,6 +125,7 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(this, this);
 		pm.registerEvents(new DamageListener(), this);
 		pm.registerEvents(new skillMenuListener(), this);
+		pm.registerEvents(new onMovementListener(), this);
 	}
 	
 	

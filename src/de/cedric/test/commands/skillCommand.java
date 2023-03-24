@@ -49,7 +49,6 @@ public class skillCommand implements CommandExecutor {
 			p.setHealthScale(20 + (getHealthCore(p)*2));
 		}
 		
-		p.sendMessage(health + "");
 		return;
 	}
 	

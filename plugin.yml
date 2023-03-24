@@ -1,5 +1,5 @@
 name: Core
-version: 1.12
+version: 1.14
 api-version: '1.19'
 main: de.cedric.test.main.Main
 
@@ -39,6 +39,7 @@ commands:
    message:
       aliases: msg
    event:
-   healthcheck:
    skillmenu:
+   boots:
+   requestServerRtp:
    

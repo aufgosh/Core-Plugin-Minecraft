@@ -31,17 +31,18 @@ implements CommandExecutor{
 			    ItemStack test = new ItemStack(Material.TRIPWIRE_HOOK);
 			    ArrayList<String> testLore = new ArrayList<String>();
 				ItemMeta testMeta = test.getItemMeta();
-				testMeta.setDisplayName("§dGewöhnlicher Schlüssel");
-				testLore.add("§6Ein Schlüssel womit du eine");
-				testLore.add("§6gewöhnliche Belohnungskiste öffnen kannst!");
-				testLore.add("§6Gebe dazu §c/Belohnung§6 ein.");
+				testMeta.setDisplayName("ï¿½dGewï¿½hnlicher Schlï¿½ssel");
+				testLore.add("ï¿½6Ein Schlï¿½ssel womit du eine");
+				testLore.add("ï¿½6gewï¿½hnliche Belohnungskiste ï¿½ffnen kannst!");
+				testLore.add("ï¿½6Gebe dazu ï¿½c/Belohnungï¿½6 ein.");
+				testMeta.setCustomModelData(null);
 				testMeta.setLore(testLore);
 				test.setAmount(1);
 				
 				test.setItemMeta(testMeta);
 				
 				target.getPlayer().getInventory().addItem(test);
-				target.sendMessage(Main.prefix+"§aDu hast einen gewöhnlichen Schlüssel erhalten!");
+				target.sendMessage(Main.prefix+"ï¿½aDu hast einen gewï¿½hnlichen Schlï¿½ssel erhalten!");
 				target.playSound(target.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 				
 			} else if(args[1].equalsIgnoreCase("rare")){
@@ -49,17 +50,17 @@ implements CommandExecutor{
 			    ItemStack test1 = new ItemStack(Material.TRIPWIRE_HOOK);
 			    ArrayList<String> test1Lore = new ArrayList<String>();
 				ItemMeta test1Meta = test1.getItemMeta();
-				test1Meta.setDisplayName("§dSeltener Schlüssel");
-				test1Lore.add("§6Ein Schlüssel womit du eine");
-				test1Lore.add("§6seltene Belohnungskiste öffnen kannst!");
-				test1Lore.add("§6Gebe dazu §c/Belohnung§6 ein.");
+				test1Meta.setDisplayName("ï¿½dSeltener Schlï¿½ssel");
+				test1Lore.add("ï¿½6Ein Schlï¿½ssel womit du eine");
+				test1Lore.add("ï¿½6seltene Belohnungskiste ï¿½ffnen kannst!");
+				test1Lore.add("ï¿½6Gebe dazu ï¿½c/Belohnungï¿½6 ein.");
 				test1Meta.setLore(test1Lore);
 				test1.setAmount(1);
 				
 				test1.setItemMeta(test1Meta);
 				
 				target.getPlayer().getInventory().addItem(test1);
-				target.sendMessage(Main.prefix+"§aDu hast dir einen seltenen Schlüssel gegeben!"); 
+				target.sendMessage(Main.prefix+"ï¿½aDu hast dir einen seltenen Schlï¿½ssel gegeben!"); 
 				target.playSound(target.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 				
 			} else if(args[1].equalsIgnoreCase("epic")){
@@ -67,17 +68,17 @@ implements CommandExecutor{
 			    ItemStack test2 = new ItemStack(Material.TRIPWIRE_HOOK);
 			    ArrayList<String> test2Lore = new ArrayList<String>();
 				ItemMeta test2Meta = test2.getItemMeta();
-				test2Meta.setDisplayName("§dEpischer Schlüssel");
-				test2Lore.add("§6Ein Schlüssel womit du eine");
-				test2Lore.add("§6epische Belohnungskiste öffnen kannst!");
-				test2Lore.add("§6Gebe dazu §c/Belohnung§6 ein.");
+				test2Meta.setDisplayName("ï¿½dEpischer Schlï¿½ssel");
+				test2Lore.add("ï¿½6Ein Schlï¿½ssel womit du eine");
+				test2Lore.add("ï¿½6epische Belohnungskiste ï¿½ffnen kannst!");
+				test2Lore.add("ï¿½6Gebe dazu ï¿½c/Belohnungï¿½6 ein.");
 				test2Meta.setLore(test2Lore);
 				test2.setAmount(1);
 				
 				test2.setItemMeta(test2Meta);
 				
 				target.getPlayer().getInventory().addItem(test2);
-				target.sendMessage(Main.prefix+"§aDu hast dir einen epischen Schlüssel gegeben!");
+				target.sendMessage(Main.prefix+"ï¿½aDu hast dir einen epischen Schlï¿½ssel gegeben!");
 				target.playSound(target.getLocation(),Sound.ENTITY_PLAYER_LEVELUP, 3, 2);
 				
 				

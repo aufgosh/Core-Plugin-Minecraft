@@ -16,6 +16,12 @@ public class utilitiesFunctions {
 		p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
 	}
 	
+	//Plays Bad Sound and sends Error message
+	public static void sendErrorCustom(Player p, String message) {
+		p.sendMessage(Main.prefix + message);	
+		p.playSound(p.getLocation(), Sound.ENTITY_ELDER_GUARDIAN_CURSE, 3, 2);
+	}
+	
 	//Sends Player a Textwall of help
 	public static void sendHelpMessage(Player p) {
 		p.sendMessage(" ");
