@@ -21,6 +21,62 @@ import utilities.utilitiesFunctions;
 
 public class eventCommand implements CommandExecutor {
 	
+	
+	public static void LevelUp(Player p) {
+		
+			//Get our firework
+			utilitiesFunctions.spawnParticleRingAroundPlayer(p, 0.1, Particle.REDSTONE, Particle.REDSTONE, Color.PURPLE, Color.FUCHSIA);
+			Location loc = p.getLocation();
+			
+			double xcord = loc.getX();
+			double ycord = loc.getY() + 4;
+			double zcord = loc.getZ();
+			
+			Location test = new Location(p.getWorld(), xcord, ycord, zcord);
+			
+			
+	        Firework fw = (Firework) p.getWorld().spawnEntity(test , EntityType.FIREWORK);
+	        FireworkMeta fireworkMeta = fw.getFireworkMeta();
+
+	        //Start builder
+	        FireworkEffect.Builder builder = FireworkEffect.builder();
+	       
+	        //Colors
+	        builder.withColor(Color.GREEN);
+	        builder.withColor(Color.YELLOW);
+
+	        //Sparkly af
+	        builder.withFlicker();
+
+	        //Faded
+	        builder.withFade(Color.GREEN);
+
+	        //Boom chaca-laca
+	        builder.with(FireworkEffect.Type.BURST);
+
+	        //Trailing behind
+	        builder.trail(true);
+
+	        //Get dat effect
+	        FireworkEffect effect = builder.build();
+
+	        //Then apply the effect to the meta
+	        fireworkMeta.addEffect(effect);
+
+	        //Set it's power cause swag
+	        fireworkMeta.setPower(0);
+
+	        //Then apply this to our rocket
+	        fw.setFireworkMeta(fireworkMeta);
+	        //Make it go boom
+	        fw.detonate();
+		
+	        p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_GROWL, 3, 2);
+	        p.playSound(p.getLocation(), Sound.ENTITY_ENDER_DRAGON_DEATH, 3, 2);
+	        p.sendMessage("§aYou leveled up! You are now level§7: §e" + skillCommand.getPlayerLevel(p));
+		
+	}
+	
 	public static void enderDragonKillBroadcast(Player killer) {
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {

@@ -10,6 +10,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import utilities.utilitiesFunctions;
+
 
 public class skillCommand implements CommandExecutor {
 	
@@ -49,6 +51,29 @@ public class skillCommand implements CommandExecutor {
 			p.setHealthScale(20 + (getHealthCore(p)*2));
 		}
 		
+		return;
+	}
+	
+	public static int getPlayerLevel(Player p) {
+		if(cfg.getString(p.getName() + ".PlayerLevel") == null) {
+			setPlayerLevel(p, 1);
+		}
+		int PlayerCurrentLevel = cfg.getInt(p.getName() + ".PlayerLevel");
+		return PlayerCurrentLevel;
+	}
+	public static void setPlayerLevel(Player p, int i) {
+		cfg.set(p.getName() + ".PlayerLevel", i);
+		saveCfg(file);
+		return;
+	}
+	
+	public static int getPlayerExperience(Player p) {
+		int PlayerCurrentExperience = cfg.getInt(p.getName() + ".PlayerExperience");
+		return PlayerCurrentExperience;
+	}
+	public static void setPlayerExperience(Player p, int i) {
+		cfg.set(p.getName() + ".PlayerExperience", i);
+		saveCfg(file);
 		return;
 	}
 	

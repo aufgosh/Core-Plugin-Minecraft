@@ -304,13 +304,19 @@ public class bootsCommand implements CommandExecutor {
 			
 		}
 		
+		if(args[0].equalsIgnoreCase("speed")){
+			p.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.115D);
+		}
+		
+		
+		
 		if(args[0].equalsIgnoreCase("ender_sword")){
 			
 			ItemStack item = new ItemStack(Material.NETHERITE_SWORD);
 			ItemMeta meta = item.hasItemMeta() ? item.getItemMeta() : Bukkit.getItemFactory().getItemMeta(item.getType());
 			
 			
-			AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 10, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+			AttributeModifier modifier = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 1, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
 			meta.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, modifier);
 			AttributeModifier modifierarmor = new AttributeModifier(UUID.randomUUID(), "generic.attackSpeed", 2, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
 			meta.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED, modifierarmor);

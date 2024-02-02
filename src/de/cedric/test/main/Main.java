@@ -24,6 +24,7 @@ import de.cedric.test.commands.Key;
 import de.cedric.test.commands.MuteCommand;
 import de.cedric.test.commands.PerkCommand;
 import de.cedric.test.commands.PingCommand;
+import de.cedric.test.commands.PlayerExperienceHandler;
 import de.cedric.test.commands.SetHomeCommand;
 import de.cedric.test.commands.SetSpawnCommand;
 import de.cedric.test.commands.SpawnerCommand;
@@ -35,6 +36,7 @@ import de.cedric.test.commands.Tutorial;
 import de.cedric.test.commands.Tutorialtp;
 import de.cedric.test.commands.bootsCommand;
 import de.cedric.test.commands.ccCommand;
+import de.cedric.test.commands.enchantBook;
 import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.messageCommand;
 import de.cedric.test.commands.newSpawnCommand;
@@ -114,6 +116,8 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("skillmenu").setExecutor(new skillMenuCommand());
 		getCommand("boots").setExecutor(new bootsCommand());
 		getCommand("requestServerRtp").setExecutor(new requestRtp());
+		getCommand("enchantbook").setExecutor(new enchantBook());
+		getCommand("xp").setExecutor(new PlayerExperienceHandler());
 		
 		
 		

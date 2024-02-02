@@ -1,6 +1,7 @@
 package listener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -9,10 +10,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerExpChangeEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import de.cedric.test.commands.PlayerExperienceHandler;
 import de.cedric.test.commands.skillCommand;
 import de.cedric.test.commands.skillMenuCommand;
 import de.cedric.test.main.Main;
@@ -21,7 +24,22 @@ import utilities.utilitiesFunctions;
 public class skillMenuListener implements Listener {
 	
 	@EventHandler
+	public void experience(PlayerExpChangeEvent e) {
+		Player p = e.getPlayer();
+		int xp = e.getAmount();
+		
+		if(p.hasPermission("main.admin")) {
+			xp = xp * 2;
+		}
+		
+		skillCommand.setPlayerExperience(p, (skillCommand.getPlayerExperience(p) + xp));
+		utilitiesFunctions.drawXpDrop(p, xp);
+		PlayerExperienceHandler.canUserLevelUp(p);
+	}
+	
+	@EventHandler
 	public void on(InventoryClickEvent e) {
+		
 		
 		Inventory open = e.getClickedInventory();
 		ItemStack item = e.getCurrentItem();
@@ -36,6 +54,40 @@ public class skillMenuListener implements Listener {
 		ItemStack[] unlockedstackHealth = skillMenuCommand.getItemStacksHealthEnhancementUnlocked(p);
 		ItemStack[] lockedstackHealth = skillMenuCommand.getItemStacksHealthEnhancementLocked(p);
 		
+
+		
+		if(item.getItemMeta() == null) {
+			return;
+		}
+		
+		if(item.getItemMeta().getDisplayName().equals("§dEnchant Weapon§7:§c Bloodbath 1")) {
+			e.setCancelled(true);
+			e.getClickedInventory().remove(item);
+			ItemMeta meta = p.getInventory().getItem(0).getItemMeta();
+			p.sendMessage("Debug: " + p.getInventory().getItem(0));
+		    ArrayList<String> lore = new ArrayList<String>();
+		    if(p.getInventory().getItem(0).getItemMeta().getLore() != null) {
+		    	lore = (ArrayList<String>) p.getInventory().getItem(0).getItemMeta().getLore();
+		    }
+			lore.add("");
+			lore.add("§dEnchanted§7:§c Bloodbath 1");	
+			meta.setLore(lore);
+			p.getInventory().getItem(0).setItemMeta(meta);
+		}
+		
+		if(item.getItemMeta().getDisplayName().equals("§dEnchant Boots§7:§c Breezewalker 1")) {
+			e.setCancelled(true);
+			ItemMeta meta = p.getInventory().getItem(0).getItemMeta();
+		    ArrayList<String> lore = (ArrayList<String>) p.getInventory().getItem(0).getItemMeta().getLore();
+			lore.add("");
+			lore.add("§dEnchanted§7:§c Breezewalker 1");	
+			meta.setLore(lore);
+			p.getInventory().getItem(0).setItemMeta(meta);
+			//lorestring.add(" ");
+			//lorestring.add("§dEnchanted§7:§c Bloodbath 1");
+			//p.getInventory().getItem(0).getItemMeta().setLore(lorestring);
+		}
+		
 		
 		if(e.getView().getTitle().equals("§9Confirm Random Teleport")) {
 			
@@ -48,6 +100,7 @@ public class skillMenuListener implements Listener {
 			if (item == null || !item.hasItemMeta()) {
 				return;
 			}
+			
 			
 			if(item.getItemMeta().getDisplayName().equals("§aConfirm")) {
 				if(p.getWorld().getName().equals("spawnworld")) {

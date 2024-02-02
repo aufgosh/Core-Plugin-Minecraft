@@ -1,6 +1,10 @@
 package listener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Particle;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,13 +16,28 @@ public class onMovementListener implements Listener {
 	@EventHandler
 	public void onPlayerMovement(PlayerMoveEvent e) {
 		Player p = e.getPlayer();
+		
+		
 	
 		
 		String Boots = "";
+		List<String> Enchant = new ArrayList<>();
 		
 		if(p.getInventory().getBoots() != null) {
 			Boots = p.getInventory().getBoots().getItemMeta().getDisplayName();
+			if(p.getInventory().getBoots().getItemMeta().getLore() != null) {
+				Enchant = p.getInventory().getBoots().getItemMeta().getLore();
+			}
 		}
+		
+		
+		if(Enchant.contains("§dEnchanted§7:§c Breezewalker 1")) {
+			p.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.12D);
+		} else {
+			p.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).setBaseValue(0.10D);
+		}
+			
+		
 		
 		switch(Boots) {
 		case "§7Boots of §cLove":

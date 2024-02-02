@@ -15,6 +15,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,7 +41,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
-
+import org.spigotmc.event.entity.EntityDismountEvent;
 
 import de.cedric.test.commands.PerkCommand;
 import de.cedric.test.commands.ReSpawn;
@@ -53,6 +54,7 @@ import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.newHome;
 import de.cedric.test.commands.skillCommand;
 import de.cedric.test.main.Main;
+import net.minecraft.world.entity.animal.horse.EntityHorse;
 import utilities.checkForBan;
 import utilities.utilitiesFunctions;
 
@@ -128,6 +130,22 @@ public class JoinListener implements Listener {
 			p.kickPlayer("§eHello!§a This is your first time playing§7,§a Player entrys have been made§7.§a Please rejoin§7.");
 		}
 	}
+	
+	@EventHandler
+    public void onVehicle(EntityDismountEvent event) {
+        if (event.getEntity() instanceof Player) {
+            Player player = (Player) event.getEntity();
+            
+            String namecompare = ("§f§l" + player.getName() + "'s pet");
+            
+            if (event.getDismounted() instanceof Horse) {
+            	Horse horse = (Horse) event.getDismounted();
+            	if(horse.getName().equals(namecompare)) {
+            		horse.remove();
+            	}
+            }
+        }
+    }
 	
 	
 	
