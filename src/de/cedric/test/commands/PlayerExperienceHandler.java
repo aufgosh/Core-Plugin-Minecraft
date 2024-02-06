@@ -1,29 +1,38 @@
 package de.cedric.test.commands;
 
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.craftbukkit.v1_19_R2.entity.CraftCow;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.IronGolem;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import CharacterHandler.Character;
+import CharacterHandler.FishingSpot;
 import de.cedric.test.main.Main;
 import org.bukkit.Material;
+
 import utilities.utilitiesFunctions;
 
 
 public class PlayerExperienceHandler implements CommandExecutor {
 	
 	
+	
     public static int getLevelXPThreshold(int level) {
-    int value = (int) (75+(400+(75*(Math.pow(2.11409,level)))));
+    int value = (int) (75+(400+(75*(Math.pow(1.21409,level)))));
     return value;
 }
 
@@ -142,6 +151,39 @@ public boolean onCommand(CommandSender sender, Command cmd, String label, String
 	        h.setPassenger(p);
 	        h.getInventory().setSaddle(new ItemStack(Material.SADDLE));
 			
+		}
+		
+		if(args[0].equals("p")) {
+			//p.launchProjectile(WitherSkull.class, p.getLocation().getDirection());
+			
+			//Skeleton s = (Skeleton) p.getPlayer().getWorld().spawnEntity(p.getPlayer().getLocation(), EntityType.SKELETON);
+			p.rayTraceBlocks(50);
+			p.sendMessage("" + p.rayTraceBlocks(50).getHitPosition());
+			//p.launchProjectile(WitherSkull.class, p.rayTraceBlocks(50));
+			
+		}
+		
+		if(args[0].equals("attack")) {
+			int xp = Character.getAttackExperience(p);
+			p.sendMessage("Attack xp: " + xp);
+		}
+		
+		if(args[0].equals("pass")) {
+		    ArmorStand armorstand = (ArmorStand) p.getWorld().spawnEntity(p.getLocation(), EntityType.ARMOR_STAND);
+		    armorstand.setHealth(20);
+		    armorstand.isInvulnerable();
+		    armorstand.setGravity(true);
+		    armorstand.setInvisible(true);
+		    armorstand.setCustomName("§b§7[§c♡" + (100) + "%§7]");
+		    armorstand.setCustomNameVisible(true);
+		    
+		    IronGolem irongolem = (IronGolem) p.getWorld().spawnEntity(p.getLocation(), EntityType.IRON_GOLEM);
+		    irongolem.addPassenger(armorstand);
+		}
+
+		
+		if(args[0].equals("fishing")) {
+			FishingSpot.returnList(p);
 		}
 		
 		

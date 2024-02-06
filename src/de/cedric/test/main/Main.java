@@ -13,6 +13,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import CharacterHandler.onJoinCharacterHandler;
+import CharacterHandler.ExperienceHandler.AttackExperienceHandler;
 import de.cedric.test.commands.Belohnungen;
 import de.cedric.test.commands.Enderchest;
 import de.cedric.test.commands.Freischalten;
@@ -41,6 +43,7 @@ import de.cedric.test.commands.eventCommand;
 import de.cedric.test.commands.messageCommand;
 import de.cedric.test.commands.newSpawnCommand;
 import de.cedric.test.commands.requestRtp;
+import de.cedric.test.commands.setFishingSpot;
 import de.cedric.test.commands.skillCommand;
 import de.cedric.test.commands.skillMenuCommand;
 import listener.DamageListener;
@@ -119,6 +122,8 @@ public class Main extends JavaPlugin implements Listener {
 		getCommand("enchantbook").setExecutor(new enchantBook());
 		getCommand("xp").setExecutor(new PlayerExperienceHandler());
 		
+		getCommand("fishingspot").setExecutor(new setFishingSpot());
+		
 		
 		
 		
@@ -130,6 +135,8 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new DamageListener(), this);
 		pm.registerEvents(new skillMenuListener(), this);
 		pm.registerEvents(new onMovementListener(), this);
+		pm.registerEvents(new AttackExperienceHandler(), this);
+		pm.registerEvents(new onJoinCharacterHandler(), this);
 	}
 	
 	

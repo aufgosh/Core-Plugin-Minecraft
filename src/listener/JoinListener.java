@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.attribute.Attribute;
+import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Entity;
@@ -19,6 +20,7 @@ import org.bukkit.entity.Horse;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityRegainHealthEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
@@ -29,6 +31,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
 import org.bukkit.event.player.PlayerExpChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -175,6 +178,29 @@ public class JoinListener implements Listener {
 	}
 	
 	@EventHandler
+	public static void onBlockBreak(BlockBreakEvent e) {
+		if(!e.getPlayer().isSneaking())
+			breakBlock(e.getBlock());
+	}
+	
+	static void breakBlock(Block b) {
+		if(b.getType() != Material.ACACIA_LOG && b.getType() != Material.OAK_LOG)
+			return;
+		
+		b.getWorld().playSound(b.getLocation(), Sound.BLOCK_WOOD_BREAK, 20, 1);
+		
+		b.breakNaturally();
+
+		breakBlock(b.getLocation().add(0, 1, 0).getBlock());
+		breakBlock(b.getLocation().add(1, 0, 0).getBlock());
+		breakBlock(b.getLocation().add(0, 0, 1).getBlock());
+
+		breakBlock(b.getLocation().subtract(0, 1, 0).getBlock());
+		breakBlock(b.getLocation().subtract(1, 0, 0).getBlock());
+		breakBlock(b.getLocation().subtract(0, 0, 1).getBlock());
+	}
+	
+	@EventHandler
 	public void regen(EntityRegainHealthEvent e) {
 		if(!(e.getEntity() instanceof Player)) { return; }
 		Entity en = e.getEntity();
@@ -212,6 +238,25 @@ public class JoinListener implements Listener {
 		}
 		*/
 		
+	}
+	
+	
+	@EventHandler
+	public void on(PlayerInteractEvent e) {
+		
+		Location loc = e.getClickedBlock().getLocation();
+		Player p = e.getPlayer();
+		p.sendMessage("");
+		p.sendMessage("==========");
+		p.sendMessage("x: " + loc.getX());
+		p.sendMessage("y: " + loc.getY());
+		p.sendMessage("z: " + loc.getZ());
+		
+		if(loc.getX() == -379 && loc.getY() == 63 && loc.getZ() == -243) {
+			p.sendMessage("hooray");
+		}
+		
+
 	}
 	
 	@EventHandler
